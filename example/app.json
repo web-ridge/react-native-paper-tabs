@@ -1,0 +1,22 @@
+{
+  "name": "react-native-paper-tabs-example",
+  "displayName": "PaperTabs Example",
+  "expo": {
+    "name": "react-native-paper-tabs-example",
+    "slug": "react-native-paper-tabs-example",
+    "description": "Example app for react-native-paper-tabs",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

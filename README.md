@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg style="fill:currentColor" height="512pt" viewBox="0 -62 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="m47.5 126h200v200h-200zm0 0" fill="#00e9cc"/><path d="m161 0h-161v350.5c0 20.679688 16.820312 37.5 37.5 37.5h437c20.679688 0 37.5-16.820312 37.5-37.5v-350.5zm175.5 64.5v-49.5h72.75v49.5zm-87.75 0v-49.5h72.75v49.5zm-15-49.5v49.5h-72.75v-49.5zm263.25 335.5c0 12.40625-10.09375 22.5-22.5 22.5h-437c-12.40625 0-22.5-10.09375-22.5-22.5v-335.5h131v64.5h351zm-72.75-286v-49.5h72.75v49.5zm0 0"/><path d="m241.003906 282.691406 12.992188-7.5-66.246094-114.742187-50.261719 87.054687-22.738281-33.304687-74.75 109.476562v2.324219l7.507812-.003906 6.1875 4.222656 61.054688-89.417969 61.054688 89.429688 12.390624-8.460938-41.324218-60.523437 40.878906-70.796875zm0 0"/><path d="m71 205c-9.691406 0-19.160156-2.636719-27.390625-7.628906l7.78125-12.824219c5.878906 3.566406 12.664063 5.453125 19.609375 5.453125 20.953125 0 38-17.046875 38-38 0-7.824219-2.355469-15.332031-6.808594-21.703125l12.296875-8.59375c6.222657 8.90625 9.511719 19.382813 9.511719 30.296875 0 29.226562-23.777344 53-53 53zm0 0"/><path d="m467 215h-14v-15h14zm-29 0h-60v-15h60zm-75 0h-15v-15h15zm-30 0h-56v-15h56zm0 0"/><path d="m467 249.5h-45v-15h45zm-60 0h-130v-15h130zm0 0"/><path d="m467 180.5h-145v-15h145zm-160 0h-30v-15h30zm0 0"/><path d="m382 284h-15v-15h15zm-30 0h-15v-15h15zm-30 0h-15v-15h15zm-30 0h-15v-15h15zm0 0"/><path d="m117.5 47.25h-15v-15h15zm-30 0h-15v-15h15zm-30 0h-15v-15h15zm0 0"/><path d="m143 153h15v15h-15zm0 0"/><path d="m205 147h15v15h-15zm0 0"/><path d="m130 190h15v15h-15zm0 0"/><path d="m69 221h15v15h-15zm0 0"/></svg>
+<img align="left" width="56" height="56" src="https://user-images.githubusercontent.com/6492229/103107073-489a0400-463b-11eb-898e-f6185d738e96.png"> react-native-paper-tabs
+---
+<br>
+<p float="left">
+<img src="https://badgen.net/bundlephobia/minzip/react-native-paper-tabs" />
+<img src="https://badgen.net/npm/dy/react-native-paper-tabs" />
+<img src="https://badgen.net/npm/types/react-native-paper-tabs" />
+<img src="https://badgen.net/npm/license/react-native-paper-tabs" />
+</p>
+
+- Smooth and fast cross platform Material Design Tabs for ([React Native Paper](https://callstack.github.io/react-native-paper/))
+- Tested on Android, iOS and the web
+- Simple API
+- Typesafe
+- Scrollabe and fixed
+- Leading or top icon
+- Performant
+- Uses native components ([react-native-viewpager](https://github.com/callstack/react-native-viewpager))
+- Great React Native Web support
+- Implements official spec ([material-design-spect](https://material.io/components/tabs#usage))
+
+## About us
+We want developers to be able to build software faster using modern tools like GraphQL, Golang, React Native.
+
+Follow us on Twitter:
+- https://twitter.com/RichardLindhout
+- https://twitter.com/web_ridge
+
+## Getting started
+
+Yarn
+```sh
+yarn add react-native-paper-tabs @react-native-community/viewpager
+```
+
+npm
+```sh
+npm install react-native-paper-tabs @react-native-community/viewpager
+```
+
+## Usage
+
+```tsx
+import {Tabs,TabScreen} from 'react-native-paper-tabs';
+
+function Example() {
+    return (
+      <Tabs
+        // uppercase={false} // true/false | default=true | labels are uppercase
+        // showTextLabel={false} // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
+        // iconPosition // leading, top | default=leading
+        // style={{ backgroundColor:'#fff' }} // works the same as AppBar in react-native-paper
+       // dark={false} // works the same as AppBar in react-native-paper
+       // theme={} // works the same as AppBar in react-native-paper
+       // mode="scrollable" // fixed, scrollable | default=fixed
+      >
+        <TabScreen label="Explore" icon="compass">
+          <View style={{ backgroundColor: 'blue', flex:1 }} />
+        </TabScreen>
+        <TabScreen label="Flights" icon="airplane">
+          <View style={{ backgroundColor: 'black', flex:1 }} />
+        </TabScreen>
+        <TabScreen label="Trips" icon="bag-suitcase">
+           <View style={{ backgroundColor: 'red', flex:1 }} />
+        </TabScreen>
+      </Tabs>
+    )
+}
+
+```
+
+## Contributing
+
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## License
+
+MIT
+
+
+### You probably like these
+- Simple translations in React (Native): https://github.com/web-ridge/react-ridge-translations
+- Simple global state management in React (Native): https://github.com/web-ridge/react-ridge-state
+- 1 command utility for React Native (Web) project: https://github.com/web-ridge/create-react-native-web-application
+- Date and Time picker for React Native Paper: https://github.com/web-ridge/react-native-paper-dates
+
