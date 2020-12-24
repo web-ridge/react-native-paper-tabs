@@ -50,9 +50,9 @@ function Example() {
         // showTextLabel={false} // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
         // iconPosition // leading, top | default=leading
         // style={{ backgroundColor:'#fff' }} // works the same as AppBar in react-native-paper
-       // dark={false} // works the same as AppBar in react-native-paper
-       // theme={} // works the same as AppBar in react-native-paper
-       // mode="scrollable" // fixed, scrollable | default=fixed
+        // dark={false} // works the same as AppBar in react-native-paper
+        // theme={} // works the same as AppBar in react-native-paper
+        // mode="scrollable" // fixed, scrollable | default=fixed
       >
         <TabScreen label="Explore" icon="compass">
           <View style={{ backgroundColor: 'blue', flex:1 }} />
