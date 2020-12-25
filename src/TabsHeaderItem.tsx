@@ -11,11 +11,10 @@ import type { ReactElement } from 'react';
 import type { TabScreenProps } from './TabScreen';
 import type { Theme } from 'react-native-paper/lib/typescript/types';
 import Color from 'color';
+import MaterialCommunityIcon from './MaterialCommunityIcon';
 import { useAnimatedText } from './internal';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import type { IconPosition, Mode } from './utils';
 const AnimatedText = Animated.createAnimatedComponent(Text);
-const AnimatedIcon = Animated.createAnimatedComponent(MaterialCommunityIcon);
 
 export default function TabsHeaderItem({
   tab,
@@ -92,12 +91,11 @@ export default function TabsHeaderItem({
           ]}
         >
           {tab.props.icon ? (
-            <AnimatedIcon
+            <MaterialCommunityIcon
+              selectable={false}
               accessibilityElementsHidden={true}
               importantForAccessibility="no"
-              // @ts-ignore
               name={tab.props.icon || ''}
-              // @ts-ignore
               style={[
                 { color: color, opacity },
                 iconPosition !== 'top' && styles.marginRight,

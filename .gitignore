@@ -4,7 +4,7 @@
 .env
 # XDE
 .expo/
-
+web-build
 # VSCode
 .vscode/
 jsconfig.json

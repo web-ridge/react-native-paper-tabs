@@ -1,10 +1,12 @@
 {
-  "name": "react-native-paper-tabs-example",
-  "displayName": "PaperTabs Example",
+  "name": "React Native Paper Tabs",
+  "displayName": "PaperTabs",
+
   "expo": {
+    "icon": "./assets/icon.png",
     "name": "react-native-paper-tabs-example",
     "slug": "react-native-paper-tabs-example",
-    "description": "Example app for react-native-paper-tabs",
+    "description": "Smooth and fast cross platform Material Design Tabs for React Native Paper",
     "privacy": "public",
     "version": "1.0.0",
     "platforms": [
@@ -12,6 +14,7 @@
       "android",
       "web"
     ],
+
     "ios": {
       "supportsTablet": true
     },

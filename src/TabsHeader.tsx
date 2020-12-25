@@ -176,6 +176,7 @@ export default function TabsHeader({
           scrollEventThrottle={25}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
+          alwaysBounceHorizontal={mode === 'scrollable'}
           scrollEnabled={mode === 'scrollable'}
         >
           {mode === 'scrollable' ? (
