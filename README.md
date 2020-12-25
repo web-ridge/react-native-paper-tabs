@@ -2,6 +2,7 @@
 ---
 <br>
 <p float="left">
+<img src="https://badgen.net/bundlephobia/minzip/react-native-paper-tabs" />
 <img src="https://badgen.net/npm/dy/react-native-paper-tabs" />
 <img src="https://badgen.net/npm/types/react-native-paper-tabs" />
 <img src="https://badgen.net/npm/license/react-native-paper-tabs" />
