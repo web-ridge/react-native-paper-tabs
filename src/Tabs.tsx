@@ -5,11 +5,13 @@ import Swiper from './Swiper';
 import type { Theme } from 'react-native-paper/lib/typescript/types';
 import TabsHeader from './TabsHeader';
 import type { IconPosition, Mode } from './utils';
+import { Platform } from 'react-native';
 
 // used to persist position on web
 const cache = createCache();
 
 function Tabs({
+  onChangeIndex,
   children,
   persistKey,
   theme,
@@ -31,14 +33,16 @@ function Tabs({
   showTextLabel?: boolean;
   uppercase?: boolean;
   mode?: Mode;
+  onChangeIndex?: (index: number) => void;
 }) {
-  const onChangeIndex = React.useCallback(
+  const onInnerChangeIndex = React.useCallback(
     (newIndex) => {
-      if (persistKey) {
+      if (persistKey && Platform.OS === 'web') {
         cache.set(persistKey, newIndex);
       }
+      onChangeIndex?.(newIndex);
     },
-    [persistKey]
+    [persistKey, onChangeIndex]
   );
 
   return (
@@ -47,7 +51,7 @@ function Tabs({
       dark={dark}
       theme={theme}
       defaultIndex={getDefaultIndex(defaultIndex, persistKey)}
-      onChangeIndex={onChangeIndex}
+      onChangeIndex={onInnerChangeIndex}
       Header={TabsHeader}
       uppercase={uppercase}
       iconPosition={iconPosition}

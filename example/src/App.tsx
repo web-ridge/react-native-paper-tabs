@@ -54,12 +54,17 @@ function App({
       ? overlay(3, theme.colors.surface)
       : (theme.colors.surface as any);
 
+  const onChangeIndex = React.useCallback((newIndex: number) => {
+    console.log({ newIndex });
+  }, []);
+
   const tabProps = {
     uppercase, // true/false | default=true | labels are uppercase
     showTextLabel: showText, // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
     iconPosition, // leading / top
     style: !dark ? { backgroundColor } : undefined, // works the same as AppBar in react-native-paper
     mode, // fixed, scrollable | default=fixed}
+    onChangeIndex,
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>

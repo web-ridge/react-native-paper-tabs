@@ -18,21 +18,16 @@ function Swiper(props: SwiperProps) {
     uppercase,
     mode,
   } = props;
-  const indexRef = React.useRef<number>(defaultIndex || 0);
   const [index, setIndex] = React.useState<number>(defaultIndex || 0);
   const goTo = React.useCallback(
     (ind: number) => {
       setIndex(ind);
+      onChangeIndex(ind);
     },
-    [setIndex]
+    [setIndex, onChangeIndex]
   );
 
   let children: React.Component<TabScreenProps>[] = props.children;
-
-  React.useEffect(() => {
-    indexRef.current = index;
-    onChangeIndex(index);
-  }, [index, onChangeIndex]);
 
   const currentScreen = children[index];
   if (!currentScreen || !currentScreen) {

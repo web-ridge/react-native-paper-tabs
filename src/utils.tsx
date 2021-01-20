@@ -33,7 +33,7 @@ export interface SwiperProps {
   dark: boolean | undefined;
   style: ViewStyle | undefined;
   theme: Theme;
-  onChangeIndex: (index: number) => any;
+  onChangeIndex: (index: number) => void;
   defaultIndex?: number;
   children: any;
   Header?: React.FC<SwiperRenderProps>;

@@ -23,6 +23,7 @@ function SwiperNative(props: SwiperProps) {
     showTextLabel,
     uppercase,
     mode,
+    onChangeIndex,
   } = props;
   const indexRef = React.useRef<number>(defaultIndex || 0);
   const [index, setIndex] = React.useState<number>(defaultIndex || 0);
@@ -57,9 +58,11 @@ function SwiperNative(props: SwiperProps) {
   const onPageSelected = React.useCallback(
     (e) => {
       isScrolling.current = false;
-      setIndex(e.nativeEvent.position);
+      const i = e.nativeEvent.position;
+      setIndex(i);
+      onChangeIndex(i);
     },
-    [isScrolling, setIndex]
+    [isScrolling, setIndex, onChangeIndex]
   );
 
   const goTo = React.useCallback(
