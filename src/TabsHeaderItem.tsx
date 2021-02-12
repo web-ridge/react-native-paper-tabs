@@ -49,10 +49,14 @@ export default function TabsHeaderItem({
   showTextLabel?: boolean;
   mode: Mode;
 }) {
-  const rippleColor = Color(activeColor as any)
-    .alpha(0.32)
-    .rgb()
-    .string();
+  const rippleColor = React.useMemo(
+    () =>
+      Color(activeColor as any)
+        .alpha(0.32)
+        .rgb()
+        .string(),
+    [activeColor]
+  );
 
   const { color, opacity } = useAnimatedText({
     active,

@@ -15,8 +15,12 @@ function getIndicatorStyle({
   width: number;
 }): ViewStyle {
   return {
-    transform: [{ scaleX: width }, { translateX: (left + width / 2) / width }],
+    transform: [{ scaleX: width }, { translateX: roundToTwo(left / width) }],
   };
+}
+
+function roundToTwo(num: number) {
+  return Math.round(num * 100 + Number.EPSILON) / 100;
 }
 
 export function useIndicator({
@@ -45,8 +49,11 @@ export function useAnimatedText({
   active,
   textColor,
 }: AnimatedColorArgs): TextStyle {
-  return {
-    color: active ? activeColor : textColor,
-    opacity: active ? 1 : 0.6,
-  };
+  return React.useMemo(
+    () => ({
+      color: active ? activeColor : textColor,
+      opacity: active ? 1 : 0.6,
+    }),
+    [active, activeColor, textColor]
+  );
 }

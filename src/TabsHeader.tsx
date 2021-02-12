@@ -260,6 +260,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         transitionDuration: '150ms',
         transitionProperty: 'all',
+        transformOrigin: 'left',
+        willChange: 'transform',
       },
       default: {},
     }),

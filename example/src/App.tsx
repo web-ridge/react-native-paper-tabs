@@ -370,7 +370,12 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 4,
   },
-  screenWithText: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  screenWithText: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 300,
+  },
   block: {
     width: 50,
     height: 30,
