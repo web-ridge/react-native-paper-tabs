@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-community/viewpager": "4.2.0",
+    "@react-native-community/viewpager": "^4.2.2",
     "expo": "^40.0.0",
     "expo-splash-screen": "~0.8.1",
     "react": "^17.0.1",

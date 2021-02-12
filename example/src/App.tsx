@@ -375,6 +375,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 300,
+    minHeight: 300,
+    maxHeight: 300,
   },
   block: {
     width: 50,
