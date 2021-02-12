@@ -22,6 +22,7 @@ function Tabs({
   uppercase = true,
   iconPosition = 'leading',
   showTextLabel = true,
+  showLeadingSpace = true,
 }: {
   children: any;
   persistKey?: string;
@@ -31,6 +32,7 @@ function Tabs({
   defaultIndex?: number;
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
+  showLeadingSpace?: boolean;
   uppercase?: boolean;
   mode?: Mode;
   onChangeIndex?: (index: number) => void;
@@ -56,6 +58,7 @@ function Tabs({
       uppercase={uppercase}
       iconPosition={iconPosition}
       showTextLabel={showTextLabel}
+      showLeadingSpace={showLeadingSpace}
       mode={mode}
     >
       {children}

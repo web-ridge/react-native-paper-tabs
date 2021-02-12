@@ -79,6 +79,7 @@ function Example() {
         // theme={} // works the same as AppBar in react-native-paper
         // mode="scrollable" // fixed, scrollable | default=fixed
         // onChangeIndex={(newIndex) => {}} // react on index change
+        // showLeadingSpace={true} //  (default=true) show leading space in scrollable tabs inside the header
       >
         <TabScreen label="Explore" icon="compass">
            <ExploreWitHookExamples />

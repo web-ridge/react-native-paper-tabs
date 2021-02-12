@@ -25,6 +25,7 @@ export interface SwiperRenderProps {
   offset: Animated.Value | undefined;
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
+  showLeadingSpace?: boolean;
   uppercase: boolean;
   mode: Mode;
 }
@@ -40,6 +41,7 @@ export interface SwiperProps {
   Footer?: React.FC<SwiperRenderProps>;
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
+  showLeadingSpace?: boolean;
   uppercase: boolean;
   mode: Mode;
 }

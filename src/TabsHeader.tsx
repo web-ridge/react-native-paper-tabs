@@ -26,6 +26,7 @@ export default function TabsHeader({
   style,
   iconPosition,
   showTextLabel,
+  showLeadingSpace,
   uppercase,
   mode,
 }: SwiperRenderProps) {
@@ -179,7 +180,7 @@ export default function TabsHeader({
           alwaysBounceHorizontal={mode === 'scrollable'}
           scrollEnabled={mode === 'scrollable'}
         >
-          {mode === 'scrollable' ? (
+          {mode === 'scrollable' && showLeadingSpace ? (
             <View style={styles.scrollablePadding} />
           ) : null}
           {React.Children.map(children, (tab, tabIndex) => (

@@ -65,6 +65,7 @@ function App({
     style: !dark ? { backgroundColor } : undefined, // works the same as AppBar in react-native-paper
     mode, // fixed, scrollable | default=fixed}
     onChangeIndex,
+    // showLeadingSpace: true, // show leading space in scrollable tabs inside the header
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
