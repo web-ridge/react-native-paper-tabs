@@ -1,6 +1,6 @@
 {
   "name": "react-native-paper-tabs",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Smooth and fast cross platform Material Design Tabs for React Native Paper",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
