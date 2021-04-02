@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Animated, Keyboard, StyleSheet } from 'react-native';
-import ViewPager from '@react-native-community/viewpager';
+import PagerView from 'react-native-pager-view';
 import type { SwiperProps } from './utils';
 import type { TabScreenProps } from './TabScreen';
 import { TabsContext } from './context';
@@ -35,7 +35,7 @@ function SwiperNative(props: SwiperProps) {
     new Animated.Value(defaultIndex || 0)
   );
   const isScrolling = React.useRef<boolean>(false);
-  const viewPager = React.useRef<ViewPager | undefined>(undefined);
+  const viewPager = React.useRef<PagerView | undefined>(undefined);
 
   React.useEffect(() => {
     if (index !== indexRef.current) {
@@ -92,7 +92,7 @@ function SwiperNative(props: SwiperProps) {
     <>
       {Header ? <Header {...renderProps} /> : null}
       <TabsContext.Provider value={{ goTo, index }}>
-        <ViewPager
+        <PagerView
           style={styles.viewPager}
           initialPage={index}
           onPageSelected={onPageSelected}
@@ -117,7 +117,7 @@ function SwiperNative(props: SwiperProps) {
               {tab}
             </View>
           ))}
-        </ViewPager>
+        </PagerView>
       </TabsContext.Provider>
       {Footer ? <Footer {...renderProps} /> : null}
     </>
