@@ -155,7 +155,6 @@ export default function TabsHeader({
     <View style={styles.relative}>
       <Surface
         style={[
-          //@ts-ignore
           { backgroundColor, elevation },
           restStyle,
           styles.tabs,
@@ -183,6 +182,7 @@ export default function TabsHeader({
           {mode === 'scrollable' && showLeadingSpace ? (
             <View style={styles.scrollablePadding} />
           ) : null}
+
           {React.Children.map(children, (tab, tabIndex) => (
             <TabsHeaderItem
               theme={theme}
@@ -210,7 +210,6 @@ export default function TabsHeader({
               {
                 backgroundColor: activeColor,
               },
-              //@ts-ignore
               indicatorStyle,
             ]}
           />

@@ -35,7 +35,7 @@ Give us a follow on Twitter:
 [web_ridge](https://twitter.com/web_ridge)
 
 ## Donate
-Instead of spending all your money on a M1 Mac, give it to us so we can buy one.
+Please contribute or donate so we can spend more time on this library.
 
 [Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7B9KKQLXTEW9Q&source=url)
 
@@ -44,12 +44,12 @@ Instead of spending all your money on a M1 Mac, give it to us so we can buy one.
 
 Yarn
 ```sh
-yarn add react-native-paper-tabs @react-native-community/viewpager
+yarn add react-native-paper-tabs react-native-pager-view
 ```
 
 npm
 ```sh
-npm install react-native-paper-tabs @react-native-community/viewpager
+npm install react-native-paper-tabs react-native-pager-view
 ```
 
 ## Usage

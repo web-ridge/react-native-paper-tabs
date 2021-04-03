@@ -3,7 +3,7 @@ import type { ViewStyle } from 'react-native';
 import { withTheme } from 'react-native-paper';
 import Swiper from './Swiper';
 import type { Theme } from 'react-native-paper/lib/typescript/types';
-import TabsHeader from './TabsHeader';
+
 import type { IconPosition, Mode } from './utils';
 import { Platform } from 'react-native';
 
@@ -54,7 +54,6 @@ function Tabs({
       theme={theme}
       defaultIndex={getDefaultIndex(defaultIndex, persistKey)}
       onChangeIndex={onInnerChangeIndex}
-      Header={TabsHeader}
       uppercase={uppercase}
       iconPosition={iconPosition}
       showTextLabel={showTextLabel}

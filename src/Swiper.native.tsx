@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { View, Animated, Keyboard, StyleSheet } from 'react-native';
-import ViewPager from '@react-native-community/viewpager';
+import ViewPager from 'react-native-pager-view';
 import type { SwiperProps } from './utils';
 import type { TabScreenProps } from './TabScreen';
 import { TabsContext } from './context';
+import TabsHeader from './TabsHeader';
 
 const styles = StyleSheet.create({
   viewPager: {
@@ -13,8 +14,6 @@ const styles = StyleSheet.create({
 
 function SwiperNative(props: SwiperProps) {
   const {
-    Header,
-    Footer,
     theme,
     dark,
     style,
@@ -24,6 +23,7 @@ function SwiperNative(props: SwiperProps) {
     uppercase,
     mode,
     onChangeIndex,
+    showLeadingSpace,
   } = props;
   const indexRef = React.useRef<number>(defaultIndex || 0);
   const [index, setIndex] = React.useState<number>(defaultIndex || 0);
@@ -40,7 +40,9 @@ function SwiperNative(props: SwiperProps) {
   React.useEffect(() => {
     if (index !== indexRef.current) {
       isScrolling.current = true;
-      viewPager.current && viewPager.current.setPage(index);
+      requestAnimationFrame(
+        () => viewPager.current && viewPager.current.setPage(index)
+      );
     }
 
     indexRef.current = index;
@@ -59,6 +61,7 @@ function SwiperNative(props: SwiperProps) {
     (e) => {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
+
       setIndex(i);
       onChangeIndex(i);
     },
@@ -85,12 +88,13 @@ function SwiperNative(props: SwiperProps) {
     offset: offset.current,
     iconPosition,
     showTextLabel,
+    showLeadingSpace,
     uppercase,
     mode,
   };
   return (
     <>
-      {Header ? <Header {...renderProps} /> : null}
+      <TabsHeader {...renderProps} />
       <TabsContext.Provider value={{ goTo, index }}>
         <ViewPager
           style={styles.viewPager}
@@ -119,7 +123,6 @@ function SwiperNative(props: SwiperProps) {
           ))}
         </ViewPager>
       </TabsContext.Provider>
-      {Footer ? <Footer {...renderProps} /> : null}
     </>
   );
 }

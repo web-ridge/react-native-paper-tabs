@@ -1,4 +1,3 @@
-import type * as React from 'react';
 import type {
   Animated,
   LayoutRectangle,
@@ -37,8 +36,6 @@ export interface SwiperProps {
   onChangeIndex: (index: number) => void;
   defaultIndex?: number;
   children: any;
-  Header?: React.FC<SwiperRenderProps>;
-  Footer?: React.FC<SwiperRenderProps>;
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
   showLeadingSpace?: boolean;

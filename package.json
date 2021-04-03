@@ -49,7 +49,6 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@react-native-community/viewpager": "^4.2.2",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/color": "^3.0.1",
     "@types/jest": "^26.0.0",
@@ -70,6 +69,7 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-builder-bob": "^0.17.1",
+    "react-native-pager-view": "^5.1.2",
     "react-native-paper": "^4.5.0",
     "react-native-unimodules": "^0.12.0",
     "react-native-vector-icons": "^7.1.0",
@@ -77,11 +77,11 @@
     "typescript": "^4.1.0"
   },
   "peerDependencies": {
-    "@react-native-community/viewpager": "*",
     "react": "*",
     "react-native": "*",
     "react-native-paper": "*",
-    "react-native-vector-icons": "*"
+    "react-native-vector-icons": "*",
+    "react-native-pager-view": "*"
   },
   "jest": {
     "preset": "react-native",

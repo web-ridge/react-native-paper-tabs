@@ -3,11 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import type { SwiperProps } from './utils';
 import type { TabScreenProps } from './TabScreen';
 import { TabsContext } from './context';
+import TabsHeader from './TabsHeader';
 
 function Swiper(props: SwiperProps) {
   const {
-    Header,
-    Footer,
     theme,
     dark,
     style,
@@ -52,11 +51,10 @@ function Swiper(props: SwiperProps) {
 
   return (
     <View style={styles.root}>
-      {Header ? <Header {...renderProps} /> : null}
+      <TabsHeader {...renderProps} />
       <TabsContext.Provider value={{ goTo, index }}>
         {currentScreen}
       </TabsContext.Provider>
-      {Footer ? <Footer {...renderProps} /> : null}
     </View>
   );
 }

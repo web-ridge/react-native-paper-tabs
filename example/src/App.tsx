@@ -55,7 +55,7 @@ function App({
       : (theme.colors.surface as any);
 
   const onChangeIndex = React.useCallback((newIndex: number) => {
-    console.log({ newIndex });
+    console.log('onChangeIndex', { newIndex });
   }, []);
 
   const tabProps = {
@@ -67,13 +67,10 @@ function App({
     onChangeIndex,
     // showLeadingSpace: true, // show leading space in scrollable tabs inside the header
   };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <ScrollView
-        style={styles.root}
-        // contentContainerStyle={{ flex: 1 }}
-        contentInsetAdjustmentBehavior="never"
-      >
+      <ScrollView style={styles.root}>
         <View style={[styles.content, styles.padding]}>
           <View style={styles.titleContainer}>
             <Image source={require('./tab.png')} style={styles.logo} />
@@ -124,26 +121,28 @@ function App({
             <Appbar.Content title="react-native-paper-tabs" />
           </Appbar>
           {mode === 'fixed' ? (
-            <Tabs {...tabProps}>
-              <TabScreen
-                label="Explore"
-                icon={showIcons ? 'compass' : undefined}
-              >
-                <ExploreWitHookExamples />
-              </TabScreen>
-              <TabScreen
-                label="Flights"
-                icon={showIcons ? 'airplane' : undefined}
-              >
-                <ScreenWithText text={'Flights'} />
-              </TabScreen>
-              <TabScreen
-                label="Trips"
-                icon={showIcons ? 'bag-personal' : undefined}
-              >
-                <ScreenWithText text={'Trips'} />
-              </TabScreen>
-            </Tabs>
+            <View>
+              <Tabs {...tabProps}>
+                <TabScreen
+                  label="Explore"
+                  icon={showIcons ? 'compass' : undefined}
+                >
+                  <ExploreWitHookExamples />
+                </TabScreen>
+                <TabScreen
+                  label="Flights"
+                  icon={showIcons ? 'airplane' : undefined}
+                >
+                  <ScreenWithText text={'Flights'} />
+                </TabScreen>
+                <TabScreen
+                  label="Trips"
+                  icon={showIcons ? 'bag-personal' : undefined}
+                >
+                  <ScreenWithText text={'Trips'} />
+                </TabScreen>
+              </Tabs>
+            </View>
           ) : (
             <Tabs {...tabProps}>
               <TabScreen

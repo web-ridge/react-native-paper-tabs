@@ -15,7 +15,10 @@ function getIndicatorStyle({
   width: number;
 }): ViewStyle {
   return {
-    transform: [{ scaleX: width }, { translateX: roundToTwo(left / width) }],
+    transform: [
+      { scaleX: width },
+      { translateX: roundToTwo(left / width) || 0 },
+    ],
   };
 }
 

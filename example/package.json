@@ -13,12 +13,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-community/viewpager": "^4.2.2",
     "expo": "^40.0.0",
     "expo-splash-screen": "~0.8.1",
+    "expo-updates": "~0.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-native": "0.63.4",
+    "react-native-pager-view": "^5.1.2",
     "react-native-paper": "^4.7.1",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-unimodules": "~0.12.0",

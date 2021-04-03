@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   Platform,
+  TextProps,
 } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
 import type { ReactElement } from 'react';
@@ -14,7 +15,9 @@ import Color from 'color';
 import MaterialCommunityIcon from './MaterialCommunityIcon';
 import { useAnimatedText } from './internal';
 import type { IconPosition, Mode } from './utils';
-const AnimatedText = Animated.createAnimatedComponent(Text);
+const AnimatedText = Animated.createAnimatedComponent<
+  React.ComponentType<TextProps>
+>(Text as any);
 
 export default function TabsHeaderItem({
   tab,
@@ -82,10 +85,12 @@ export default function TabsHeaderItem({
           iconPosition === 'top' && styles.touchableRippleTop,
         ]}
         rippleColor={rippleColor}
+        // @ts-ignore
         accessibilityTraits={'button'}
         accessibilityRole="button"
         accessibilityComponentType="button"
         accessibilityLabel={tab.props.label}
+        accessibilityState={{ selected: active }}
         testID={`tab_${tabIndex}`}
       >
         <View
@@ -95,17 +100,21 @@ export default function TabsHeaderItem({
           ]}
         >
           {tab.props.icon ? (
-            <MaterialCommunityIcon
-              selectable={false}
-              accessibilityElementsHidden={true}
-              importantForAccessibility="no"
-              name={tab.props.icon || ''}
+            <View
               style={[
-                { color: color, opacity },
+                styles.iconContainer,
                 iconPosition !== 'top' && styles.marginRight,
               ]}
-              size={24}
-            />
+            >
+              <MaterialCommunityIcon
+                selectable={false}
+                accessibilityElementsHidden={true}
+                importantForAccessibility="no"
+                name={tab.props.icon || ''}
+                style={{ color: color, opacity }}
+                size={24}
+              />
+            </View>
           ) : null}
           {showTextLabel ? (
             <AnimatedText
@@ -147,6 +156,10 @@ const styles = StyleSheet.create({
   },
   touchableRippleInnerTop: {
     flexDirection: 'column',
+  },
+  iconContainer: {
+    width: 24,
+    height: 24,
   },
   text: {
     textAlign: 'center',
