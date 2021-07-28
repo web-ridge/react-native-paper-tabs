@@ -22,6 +22,7 @@ function SwiperNative(props: SwiperProps) {
     showTextLabel,
     uppercase,
     mode,
+    hide,
     onChangeIndex,
     showLeadingSpace,
   } = props;
@@ -93,6 +94,7 @@ function SwiperNative(props: SwiperProps) {
     showLeadingSpace,
     uppercase,
     mode,
+    hide
   };
   return (
     <>

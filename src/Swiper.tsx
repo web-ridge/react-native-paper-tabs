@@ -17,6 +17,7 @@ function Swiper(props: SwiperProps) {
     showLeadingSpace,
     uppercase,
     mode,
+    hide,
   } = props;
   const [index, setIndex] = React.useState<number>(defaultIndex || 0);
   const goTo = React.useCallback(
@@ -47,6 +48,7 @@ function Swiper(props: SwiperProps) {
     showLeadingSpace,
     uppercase,
     mode,
+    hide
   };
 
   return (

@@ -29,6 +29,7 @@ export default function TabsHeader({
   showLeadingSpace,
   uppercase,
   mode,
+  hide
 }: SwiperRenderProps) {
   const { colors, dark: isDarkTheme, mode: themeMode } = theme;
   const {
@@ -150,6 +151,11 @@ export default function TabsHeader({
   React.useEffect(() => {
     updateIndicator();
   }, [updateIndicator]);
+
+  if (hide) {
+    // blank view is better to prevent crashes
+    return <View />;
+  }
 
   return (
     <View style={styles.relative}>

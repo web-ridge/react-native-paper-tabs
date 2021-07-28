@@ -27,6 +27,7 @@ export interface SwiperRenderProps {
   showLeadingSpace?: boolean;
   uppercase: boolean;
   mode: Mode;
+  hide: boolean;
 }
 
 export interface SwiperProps {
@@ -41,6 +42,7 @@ export interface SwiperProps {
   showLeadingSpace?: boolean;
   uppercase: boolean;
   mode: Mode;
+  hide: boolean;
 }
 
 export interface OffsetScrollArgs {

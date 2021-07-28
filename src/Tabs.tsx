@@ -23,6 +23,7 @@ function Tabs({
   iconPosition = 'leading',
   showTextLabel = true,
   showLeadingSpace = true,
+  hide = false
 }: {
   children: any;
   persistKey?: string;
@@ -35,6 +36,7 @@ function Tabs({
   showLeadingSpace?: boolean;
   uppercase?: boolean;
   mode?: Mode;
+  hide?: boolean;
   onChangeIndex?: (index: number) => void;
 }) {
   const onInnerChangeIndex = React.useCallback(
@@ -59,6 +61,7 @@ function Tabs({
       showTextLabel={showTextLabel}
       showLeadingSpace={showLeadingSpace}
       mode={mode}
+      hide={hide}
     >
       {children}
     </Swiper>
