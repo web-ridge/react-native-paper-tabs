@@ -62,8 +62,10 @@ function SwiperNative(props: SwiperProps) {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
 
-      setIndex(i);
-      onChangeIndex(i);
+      if (isScrolling.current) {
+        setIndex(i);
+        onChangeIndex(i);
+      }
     },
     [isScrolling, setIndex, onChangeIndex]
   );
