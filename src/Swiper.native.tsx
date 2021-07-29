@@ -27,26 +27,13 @@ function SwiperNative(props: SwiperProps) {
     showLeadingSpace,
   } = props;
   const indexRef = React.useRef<number>(defaultIndex || 0);
-  const [index, setIndex] = React.useState<number>(defaultIndex || 0);
 
-  let children: React.Component<TabScreenProps>[] = props.children;
+  const children: React.Component<TabScreenProps>[] = props.children;
 
   const offset = React.useRef<Animated.Value>(new Animated.Value(0));
-  const position = React.useRef<Animated.Value>(
-    new Animated.Value(defaultIndex || 0)
-  );
+  const position = React.useRef<Animated.Value>(new Animated.Value(defaultIndex || 0));
   const isScrolling = React.useRef<boolean>(false);
-  const viewPager = React.useRef<ViewPager | undefined>(undefined);
-
-  React.useEffect(() => {
-    if (index !== indexRef.current) {
-      isScrolling.current = true;
-      requestAnimationFrame(() => viewPagerRef.current && viewPagerRef.current.setPage(index));
-    }
-
-    indexRef.current = index;
-    return undefined;
-  }, [isScrolling, index, viewPagerRef]);
+  const viewPagerRef = React.useRef<ViewPager | undefined>(undefined);
 
   const onPageScrollStateChanged = React.useCallback(
     (event) => {
@@ -61,6 +48,7 @@ function SwiperNative(props: SwiperProps) {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
       onChangeIndex(i);
+      indexRef.current = i;
     },
     [isScrolling, onChangeIndex]
   );
@@ -69,13 +57,14 @@ function SwiperNative(props: SwiperProps) {
     (ind: number) => {
       if (!isScrolling.current) {
         viewPagerRef.current?.setPage(ind);
+        indexRef.current = ind;
       }
     },
     [isScrolling, viewPagerRef]
   );
 
   const renderProps = {
-    index,
+    index: indexRef.current,
     goTo,
     children,
     theme,
@@ -88,17 +77,17 @@ function SwiperNative(props: SwiperProps) {
     showLeadingSpace,
     uppercase,
     mode,
-    hide
+    hide,
   };
   return (
     <>
       <TabsHeader {...renderProps} />
-      <TabsContext.Provider value={{ goTo, index }}>
+      <TabsContext.Provider value={{ goTo, index: indexRef.current }}>
         <ViewPager
           style={styles.viewPager}
-          initialPage={index}
+          initialPage={indexRef.current}
           onPageSelected={onPageSelected}
-          ref={viewPager as any}
+          ref={viewPagerRef as any}
           onPageScrollStateChanged={onPageScrollStateChanged}
           onPageScroll={Animated.event(
             [
