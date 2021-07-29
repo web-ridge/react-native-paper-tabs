@@ -41,19 +41,17 @@ function SwiperNative(props: SwiperProps) {
   React.useEffect(() => {
     if (index !== indexRef.current) {
       isScrolling.current = true;
-      requestAnimationFrame(
-        () => viewPager.current && viewPager.current.setPage(index)
-      );
+      requestAnimationFrame(() => viewPagerRef.current && viewPagerRef.current.setPage(index));
     }
 
     indexRef.current = index;
     return undefined;
-  }, [isScrolling, viewPager, index]);
+  }, [isScrolling, index, viewPagerRef]);
 
   const onPageScrollStateChanged = React.useCallback(
     (event) => {
       Keyboard.dismiss();
-      isScrolling.current = event.nativeEvent.pageScrollState !== 'idle';
+      isScrolling.current = event.nativeEvent.pageScrollState !== "idle";
     },
     [isScrolling]
   );
@@ -62,22 +60,18 @@ function SwiperNative(props: SwiperProps) {
     (e) => {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
-
-      if (isScrolling.current) {
-        setIndex(i);
-        onChangeIndex(i);
-      }
+      onChangeIndex(i);
     },
-    [isScrolling, setIndex, onChangeIndex]
+    [isScrolling, onChangeIndex]
   );
 
   const goTo = React.useCallback(
     (ind: number) => {
       if (!isScrolling.current) {
-        setIndex(ind);
+        viewPagerRef.current?.setPage(ind);
       }
     },
-    [setIndex, isScrolling]
+    [isScrolling, viewPagerRef]
   );
 
   const renderProps = {
