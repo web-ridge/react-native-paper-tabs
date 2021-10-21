@@ -80,11 +80,12 @@ function Example() {
         // mode="scrollable" // fixed, scrollable | default=fixed
         // onChangeIndex={(newIndex) => {}} // react on index change
         // showLeadingSpace={true} //  (default=true) show leading space in scrollable tabs inside the header
+        // disableSwipe={false} // (default=false) disable swipe to left/right gestures
       >
         <TabScreen label="Explore" icon="compass">
            <ExploreWitHookExamples />
         </TabScreen>
-        <TabScreen label="Flights" icon="airplane">
+        <TabScreen label="Flights" icon="airplane" disabled>
           <View style={{ backgroundColor: 'black', flex:1 }} />
         </TabScreen>
         <TabScreen label="Trips" icon="bag-suitcase">
