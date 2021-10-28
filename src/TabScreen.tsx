@@ -6,6 +6,7 @@ export interface TabScreenProps {
   icon?: IconSource;
   children: any;
   preload?: () => any;
+  disabled?: boolean;
 }
 
 export default function TabScreen({ children }: TabScreenProps) {

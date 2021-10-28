@@ -78,11 +78,13 @@ export default function TabsHeaderItem({
       onLayout={(e) => onTabLayout(tabIndex, e)}
     >
       <TouchableRipple
+        disabled={tab.props.disabled}
         onPress={() => goTo(tabIndex)}
         onPressIn={() => {}}
         style={[
           styles.touchableRipple,
           iconPosition === 'top' && styles.touchableRippleTop,
+          tab.props.disabled && styles.touchableRippleDisabled,
         ]}
         rippleColor={rippleColor}
         // @ts-ignore
@@ -156,6 +158,9 @@ const styles = StyleSheet.create({
   },
   touchableRippleInnerTop: {
     flexDirection: 'column',
+  },
+  touchableRippleDisabled: {
+    opacity: 0.4,
   },
   iconContainer: {
     width: 24,
