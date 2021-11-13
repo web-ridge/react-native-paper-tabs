@@ -24,7 +24,7 @@ function SwiperNative(props: SwiperProps) {
     mode,
     onChangeIndex,
     showLeadingSpace,
-    disableSwipe
+    disableSwipe,
   } = props;
   const indexRef = React.useRef<number>(defaultIndex || 0);
   const [index, setIndex] = React.useState<number>(defaultIndex || 0);
