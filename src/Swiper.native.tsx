@@ -24,6 +24,7 @@ function SwiperNative(props: SwiperProps) {
     mode,
     onChangeIndex,
     showLeadingSpace,
+    disableSwipe
   } = props;
   const indexRef = React.useRef<number>(defaultIndex || 0);
   const [index, setIndex] = React.useState<number>(defaultIndex || 0);
@@ -99,6 +100,7 @@ function SwiperNative(props: SwiperProps) {
         <ViewPager
           style={styles.viewPager}
           initialPage={index}
+          scrollEnabled={!disableSwipe}
           onPageSelected={onPageSelected}
           ref={viewPager as any}
           onPageScrollStateChanged={onPageScrollStateChanged}
