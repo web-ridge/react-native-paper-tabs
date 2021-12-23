@@ -67,7 +67,6 @@ export interface IndicatorArgs {
   childrenCount: number;
   position: Animated.Value | undefined;
   offset: Animated.Value | undefined;
-  tabsLayout: LayoutRectangle | null;
 }
 export type IndicatorReturns = [
   RefObject<View> | undefined,

@@ -9,8 +9,6 @@ import type {
 } from './utils';
 import { Animated, Platform } from 'react-native';
 
-const nothing = () => null;
-
 export function useAnimatedText({
   childrenCount,
   tabIndex,
@@ -42,40 +40,40 @@ export function useIndicator({
   position,
   offset,
   layouts,
-  tabsLayout,
 }: IndicatorArgs): IndicatorReturns {
   const childrenA = Array(childrenCount).fill(undefined);
   const positionWithOffset = Animated.add(position!, offset!);
   const inputRange = childrenA.map((_, i) => i);
-  const style: AnimatedViewStyle | null =
-    position && tabsLayout && layouts.current
-      ? {
-          transform: [
-            {
-              scaleX: positionWithOffset.interpolate({
-                inputRange,
-                outputRange: childrenA.map(
-                  (_, i) => layouts.current?.[i]?.width || 0
-                ),
-              }),
-            },
-            {
-              translateX: positionWithOffset.interpolate({
-                inputRange,
-                outputRange: childrenA.map((_, i) => {
-                  const cl = layouts.current?.[i];
-                  if (!cl) {
-                    return 0;
-                  }
-                  return (cl.x + cl.width / 2) / cl.width;
-                }),
-              }),
-            },
-          ],
-        }
-      : null;
+  const [style, setStyle] = React.useState<AnimatedViewStyle | null>(null);
+  const updateIndicator = React.useCallback(() => {
+    setStyle({
+      transform: [
+        {
+          scaleX: positionWithOffset.interpolate({
+            inputRange,
+            outputRange: childrenA.map(
+              (_, i) => layouts.current?.[i]?.width || 0
+            ),
+          }),
+        },
+        {
+          translateX: positionWithOffset.interpolate({
+            inputRange,
+            outputRange: childrenA.map((_, i) => {
+              const cl = layouts.current?.[i];
+              if (!cl) {
+                return 0;
+              }
+              return (cl.x + cl.width / 2) / cl.width;
+            }),
+          }),
+        },
+      ],
+    });
+  }, [layouts]);
 
-  return [undefined, nothing, style];
+
+  return [undefined, updateIndicator, style];
 }
 
 export function useOffsetScroller({

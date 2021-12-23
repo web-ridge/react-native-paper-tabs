@@ -66,7 +66,6 @@ export default function TabsHeader({
     null
   );
   const [indicatorRef, updateIndicator, indicatorStyle] = useIndicator({
-    tabsLayout,
     layouts,
     index,
     offset,
