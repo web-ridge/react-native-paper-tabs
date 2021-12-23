@@ -43,6 +43,11 @@ export function useIndicator({
     }
   }, [index, indicatorRef, layouts]);
 
+  // update indicator when index changes (updateIndicator function changes to new reference when index changes)
+  React.useEffect(() => {
+    updateIndicator();
+  }, [updateIndicator]);
+
   return [indicatorRef, updateIndicator, null];
 }
 

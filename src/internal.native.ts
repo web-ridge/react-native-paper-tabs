@@ -9,8 +9,6 @@ import type {
 } from './utils';
 import { Animated, Platform } from 'react-native';
 
-const nothing = () => null;
-
 export function useAnimatedText({
   childrenCount,
   tabIndex,
@@ -44,11 +42,16 @@ export function useIndicator({
   layouts,
   tabsLayout,
 }: IndicatorArgs): IndicatorReturns {
-  const childrenA = Array(childrenCount).fill(undefined);
-  const positionWithOffset = Animated.add(position!, offset!);
-  const inputRange = childrenA.map((_, i) => i);
-  const style: AnimatedViewStyle | null =
-    position && tabsLayout && layouts.current
+  const [renderIndex, setRenderIndex] = React.useState(0);
+
+  const style = React.useMemo<AnimatedViewStyle | null>(() => {
+    /* eslint-disable @typescript-eslint/no-unused-vars  */
+    // @ts-ignore
+    let _ = renderIndex;
+    const childrenA = Array(childrenCount).fill(undefined);
+    const inputRange = childrenA.map((__, i) => i);
+    const positionWithOffset = Animated.add(position!, offset!);
+    return position && tabsLayout && layouts.current
       ? {
           transform: [
             {
@@ -74,8 +77,13 @@ export function useIndicator({
           ],
         }
       : null;
+  }, [position, offset, tabsLayout, layouts, renderIndex, childrenCount]);
 
-  return [undefined, nothing, style];
+  const onUpdateTabLayout = React.useCallback(() => {
+    setRenderIndex((prev) => prev + 1);
+  }, [setRenderIndex]);
+
+  return [undefined, onUpdateTabLayout, style];
 }
 
 export function useOffsetScroller({

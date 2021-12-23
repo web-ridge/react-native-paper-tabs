@@ -30,7 +30,7 @@ function Swiper(props: SwiperProps) {
   let children: React.Component<TabScreenProps>[] = props.children;
 
   const currentScreen = children[index];
-  if (!currentScreen || !currentScreen) {
+  if (!currentScreen) {
     return null;
   }
   const renderProps = {

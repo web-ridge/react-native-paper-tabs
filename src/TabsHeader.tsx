@@ -65,7 +65,7 @@ export default function TabsHeader({
   const [tabsLayout, setTabsLayout] = React.useState<LayoutRectangle | null>(
     null
   );
-  const [indicatorRef, updateIndicator, indicatorStyle] = useIndicator({
+  const [indicatorRef, onUpdateTabLayout, indicatorStyle] = useIndicator({
     tabsLayout,
     layouts,
     index,
@@ -87,9 +87,9 @@ export default function TabsHeader({
         ...layouts.current,
         [tabIndex]: event.nativeEvent.layout,
       };
-      updateIndicator();
+      onUpdateTabLayout();
     },
-    [layouts, updateIndicator]
+    [layouts, onUpdateTabLayout]
   );
 
   const updateScroll = React.useCallback(
@@ -145,11 +145,6 @@ export default function TabsHeader({
   React.useEffect(() => {
     updateScroll();
   }, [updateScroll]);
-
-  // update indicator when index changes (updateIndicator function changes to new reference when index changes)
-  React.useEffect(() => {
-    updateIndicator();
-  }, [updateIndicator]);
 
   return (
     <View style={styles.relative}>

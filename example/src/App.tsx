@@ -121,28 +121,26 @@ function App({
             <Appbar.Content title="react-native-paper-tabs" />
           </Appbar>
           {mode === 'fixed' ? (
-            <View>
-              <Tabs {...tabProps}>
-                <TabScreen
-                  label="Explore"
-                  icon={showIcons ? 'compass' : undefined}
-                >
-                  <ExploreWitHookExamples />
-                </TabScreen>
-                <TabScreen
-                  label="Flights"
-                  icon={showIcons ? 'airplane' : undefined}
-                >
-                  <ScreenWithText text={'Flights'} />
-                </TabScreen>
-                <TabScreen
-                  label="Trips"
-                  icon={showIcons ? 'bag-personal' : undefined}
-                >
-                  <ScreenWithText text={'Trips'} />
-                </TabScreen>
-              </Tabs>
-            </View>
+            <Tabs {...tabProps}>
+              <TabScreen
+                label="Explore"
+                icon={showIcons ? 'compass' : undefined}
+              >
+                <ExploreWitHookExamples />
+              </TabScreen>
+              <TabScreen
+                label="Flights"
+                icon={showIcons ? 'airplane' : undefined}
+              >
+                <ScreenWithText text={'Flights'} />
+              </TabScreen>
+              <TabScreen
+                label="Trips"
+                icon={showIcons ? 'bag-personal' : undefined}
+              >
+                <ScreenWithText text={'Trips'} />
+              </TabScreen>
+            </Tabs>
           ) : (
             <Tabs {...tabProps}>
               <TabScreen
@@ -199,6 +197,7 @@ function App({
                 onPress={() => setBackgroundColor(undefined)}
                 selected={backgroundColor === undefined}
               />
+
               <Block
                 backgroundColor={'#fff'}
                 onPress={() => setBackgroundColor('#fff')}
@@ -374,9 +373,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 300,
-    minHeight: 300,
-    maxHeight: 300,
+    // backgroundColor: 'pink',
+    height: 200,
+    minHeight: 200,
+    maxHeight: 200,
   },
   block: {
     width: 50,
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     maxWidth: 500,
     marginTop: 16,
     alignSelf: 'center',
-    flex: 1,
+    // flex: 1,
   },
   contentInline: {
     padding: 0,
