@@ -65,7 +65,7 @@ export function useIndicator({
             {
               translateX: positionWithOffset.interpolate({
                 inputRange,
-                outputRange: childrenA.map((_, i) => {
+                outputRange: childrenA.map((__, i) => {
                   const cl = layouts.current?.[i];
                   if (!cl) {
                     return 0;
