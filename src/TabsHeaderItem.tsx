@@ -79,8 +79,11 @@ export default function TabsHeaderItem({
     >
       <TouchableRipple
         disabled={tab.props.disabled}
-        onPress={() => goTo(tabIndex)}
-        onPressIn={() => {}}
+        onPress={(e) => {
+          goTo(tabIndex);
+          tab.props.onPress?.(e);
+        }}
+        onPressIn={tab.props.onPressIn}
         style={[
           styles.touchableRipple,
           iconPosition === 'top' && styles.touchableRippleTop,

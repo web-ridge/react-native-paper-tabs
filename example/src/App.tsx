@@ -125,6 +125,12 @@ function App({
               <TabScreen
                 label="Explore"
                 icon={showIcons ? 'compass' : undefined}
+                onPressIn={() => {
+                  console.log('onPressIn explore');
+                }}
+                onPress={() => {
+                  console.log('onPress explore');
+                }}
               >
                 <ExploreWitHookExamples />
               </TabScreen>

@@ -88,7 +88,17 @@ function Example() {
         <TabScreen label="Flights" icon="airplane" disabled>
           <View style={{ backgroundColor: 'black', flex:1 }} />
         </TabScreen>
-        <TabScreen label="Trips" icon="bag-suitcase">
+        <TabScreen
+          label="Trips"
+          icon="bag-suitcase"
+          // optional props
+          // onPressIn={() => {
+          //   console.log('onPressIn explore');
+          // }}
+          // onPress={() => {
+          //   console.log('onPress explore');
+          // }}
+        >
            <View style={{ backgroundColor: 'red', flex:1 }} />
         </TabScreen>
       </Tabs>
