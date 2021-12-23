@@ -58,7 +58,7 @@ export function useIndicator({
               scaleX: positionWithOffset.interpolate({
                 inputRange,
                 outputRange: childrenA.map(
-                  (_, i) => layouts.current?.[i]?.width || 0
+                  (__, i) => layouts.current?.[i]?.width || 0
                 ),
               }),
             },

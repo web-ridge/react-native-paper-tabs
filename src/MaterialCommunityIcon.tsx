@@ -14,7 +14,6 @@ try {
   // Fallback component for icons
   // @ts-ignore
   MaterialCommunityIcons = ({ name, ...rest }) => {
-    /* eslint-disable no-console */
     if (!isErrorLogged) {
       if (
         !/(Cannot find module|Module not found|Cannot resolve module)/.test(
