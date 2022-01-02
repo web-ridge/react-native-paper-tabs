@@ -7,7 +7,7 @@ import {
   Platform,
   TextProps,
 } from 'react-native';
-import { Text, TouchableRipple } from 'react-native-paper';
+import { Badge, Text, TouchableRipple } from 'react-native-paper';
 import type { ReactElement } from 'react';
 import type { TabScreenProps } from './TabScreen';
 import type { Theme } from 'react-native-paper/lib/typescript/types';
@@ -119,6 +119,25 @@ export default function TabsHeaderItem({
                 style={{ color: color, opacity }}
                 size={24}
               />
+              {tab.props.badge ? <View
+                style={[
+                  styles.badgeContainer,
+                  {
+                    right:
+                      (tab.props.badge != null && typeof tab.props.badge !== 'boolean'
+                        ? String(tab.props.badge).length * -2
+                        : 0) - 2,
+                  },
+                ]}
+              >
+                {typeof tab.props.badge === 'boolean' ? (
+                  <Badge visible={tab.props.badge} size={8} />
+                ) : (
+                    <Badge visible={tab.props.badge != null} size={16}>
+                      {tab.props.badge}
+                  </Badge>
+                )}
+              </View> : null}
             </View>
           ) : null}
           {showTextLabel ? (
@@ -140,6 +159,11 @@ export default function TabsHeaderItem({
 }
 
 const styles = StyleSheet.create({
+  badgeContainer: {
+    position: 'absolute',
+    left: 0,
+    top: -2,
+  },
   tabRoot: { position: 'relative' },
   tabRootFixed: { flex: 1 },
   touchableRipple: {
