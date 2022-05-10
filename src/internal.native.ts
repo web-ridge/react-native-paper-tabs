@@ -70,7 +70,8 @@ export function useIndicator({
                   if (!cl) {
                     return 0;
                   }
-                  return (cl.x + cl.width / 2) / cl.width;
+                  const calc = (cl.x + cl.width / 2) / cl.width;
+                  return isNaN(calc) ? 0 : calc;
                 }),
               }),
             },
