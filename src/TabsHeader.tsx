@@ -38,7 +38,7 @@ export default function TabsHeader({
   }: ViewStyle = StyleSheet.flatten(style) || {};
 
   let isDark: boolean;
-
+  
   const backgroundColor = customBackground
     ? customBackground
     : isDarkTheme && themeMode === 'adaptive'
@@ -55,7 +55,7 @@ export default function TabsHeader({
         : // @ts-ignore
           !color(backgroundColor).isLight();
   }
-  const textColor = isDark ? '#fff' : '#000';
+  const textColor = isDark ? '#fff' : '#fff';
   const activeColor = hasPrimaryBackground ? textColor : theme.colors.primary;
 
   const innerScrollSize = React.useRef<number | null>(null);
