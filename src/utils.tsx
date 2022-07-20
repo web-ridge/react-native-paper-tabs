@@ -17,8 +17,6 @@ export interface SwiperRenderProps {
   dark: boolean | undefined;
   style: ViewStyle | undefined;
   theme: Theme;
-  index: number;
-  goTo: (index: number) => any;
   children: any;
   position: Animated.Value | undefined;
   offset: Animated.Value | undefined;
@@ -33,8 +31,6 @@ export interface SwiperProps {
   dark: boolean | undefined;
   style: ViewStyle | undefined;
   theme: Theme;
-  onChangeIndex: (index: number) => void;
-  defaultIndex?: number;
   children: any;
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
@@ -74,3 +70,10 @@ export type IndicatorReturns = [
   () => any,
   AnimatedViewStyle | null
 ];
+
+export interface TabsProviderProps {
+  children: any;
+  onChangeIndex: (index: number) => void;
+  defaultIndex?: number;
+  persistKey?: string;
+}
