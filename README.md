@@ -16,6 +16,8 @@
 - Scrollable and fixed
 - Leading or top icon
 - Performant
+- Badges
+- Support for Material You
 - Uses native components ([react-native-viewpager](https://github.com/callstack/react-native-viewpager))
 - Great React Native Web support
 - Implements official spec ([material-design-spec](https://material.io/components/tabs#usage))
@@ -69,39 +71,46 @@ import {
 
 function Example() {
     return (
-      <Tabs
-        // defaultIndex={0} // default = 0
-        // uppercase={false} // true/false | default=true | labels are uppercase
-        // showTextLabel={false} // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
-        // iconPosition // leading, top | default=leading
-        // style={{ backgroundColor:'#fff' }} // works the same as AppBar in react-native-paper
-        // dark={false} // works the same as AppBar in react-native-paper
-        // theme={} // works the same as AppBar in react-native-paper
-        // mode="scrollable" // fixed, scrollable | default=fixed
-        // onChangeIndex={(newIndex) => {}} // react on index change
-        // showLeadingSpace={true} //  (default=true) show leading space in scrollable tabs inside the header
-        // disableSwipe={false} // (default=false) disable swipe to left/right gestures
+      <TabsProvider
+        defaultIndex={0}
+        onChangeIndex={handleChangeIndex}
+        persistKey="test"
       >
-        <TabScreen label="Explore" icon="compass">
-           <ExploreWitHookExamples />
-        </TabScreen>
-        <TabScreen label="Flights" icon="airplane" disabled>
-          <View style={{ backgroundColor: 'black', flex:1 }} />
-        </TabScreen>
-        <TabScreen
-          label="Trips"
-          icon="bag-suitcase"
-          // optional props
-          // onPressIn={() => {
-          //   console.log('onPressIn explore');
-          // }}
-          // onPress={() => {
-          //   console.log('onPress explore');
-          // }}
+        <Tabs
+          // uppercase={false} // true/false | default=true | labels are uppercase
+          // showTextLabel={false} // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
+          // iconPosition // leading, top | default=leading
+          // style={{ backgroundColor:'#fff' }} // works the same as AppBar in react-native-paper
+          // dark={false} // works the same as AppBar in react-native-paper
+          // theme={} // works the same as AppBar in react-native-paper
+          // mode="scrollable" // fixed, scrollable | default=fixed
+          // showLeadingSpace={true} //  (default=true) show leading space in scrollable tabs inside the header
+          // disableSwipe={false} // (default=false) disable swipe to left/right gestures
         >
-           <View style={{ backgroundColor: 'red', flex:1 }} />
-        </TabScreen>
-      </Tabs>
+          <TabScreen label="Explore" icon="compass">
+             <ExploreWitHookExamples />
+          </TabScreen>
+          <TabScreen label="Flights" icon="airplane" disabled>
+            <View style={{ backgroundColor: 'black', flex:1 }} />
+          </TabScreen>
+          <TabScreen
+            label="Trips"
+            icon="bag-suitcase"
+            // optional props
+            // badge={true} // only show indicator
+            // badge="text"
+            // badge={1}
+            // onPressIn={() => {
+            //   console.log('onPressIn explore');
+            // }}
+            // onPress={() => {
+            //   console.log('onPress explore');
+            // }}
+          >
+             <View style={{ backgroundColor: 'red', flex:1 }} />
+          </TabScreen>
+        </Tabs>
+      </TabsProvider>
     )
 }
 
