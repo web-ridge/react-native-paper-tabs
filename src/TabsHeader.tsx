@@ -29,18 +29,19 @@ export default function TabsHeader({
   const { colors, dark: isDarkTheme, mode: themeMode, isV3 } = theme;
   const {
     backgroundColor: customBackground,
-    elevation = 4,
+    elevation: _elevation,
     ...restStyle
   }: ViewStyle = StyleSheet.flatten(style) || {};
 
+  let elevation = theme.isV3 ? _elevation : _elevation || 4;
   let isDark: boolean;
 
   const backgroundColorV2 =
     isDarkTheme && themeMode === 'adaptive'
-      ? overlay(elevation, colors.surface)
+      ? overlay(elevation || 0, colors.surface)
       : colors.primary;
 
-  const backgroundColorV3 = theme.colors.background;
+  const backgroundColorV3 = theme.colors.surface;
   const backgroundColor = customBackground
     ? customBackground
     : isV3
@@ -57,8 +58,17 @@ export default function TabsHeader({
         : // @ts-ignore
           !color(backgroundColor).isLight();
   }
-  const textColor = isDark ? '#fff' : '#000';
-  const activeColor = hasPrimaryBackground ? textColor : theme.colors.primary;
+
+  const textColorV2 = isDark ? '#fff' : '#000';
+  const activeColorV2 = hasPrimaryBackground ? textColor : theme.colors.primary;
+
+  // Color (active)	On surface	md.sys.color.on-surface
+  // Color (inactive)	On surface variant	md.sys.color.on-surface-variant
+  const textColorV3 = colors.onSurfaceVariant;
+  const activeColorV3 = colors.onSurface;
+
+  const textColor = isV3 ? textColorV3 : textColorV2;
+  const activeColor = isV3 ? activeColorV3 : activeColorV2;
 
   const innerScrollSize = React.useRef<number | null>(null);
   const scrollX = React.useRef<number>(0);
@@ -148,9 +158,11 @@ export default function TabsHeader({
     updateScroll();
   }, [updateScroll]);
 
+  const SurfaceComponent = theme.isV3 ? View : Surface;
+
   return (
     <View style={styles.relative}>
-      <Surface
+      <SurfaceComponent
         style={[
           { backgroundColor, elevation },
           restStyle,
@@ -205,23 +217,25 @@ export default function TabsHeader({
             style={[
               styles.indicator,
               {
-                backgroundColor: activeColor,
+                backgroundColor: theme.colors.primary,
               },
               indicatorStyle as any,
             ]}
           />
         </ScrollView>
-        <Animated.View
-          style={[
-            styles.removeTopShadow,
-            {
-              height: elevation,
-              backgroundColor,
-              top: -elevation,
-            },
-          ]}
-        />
-      </Surface>
+        {elevation && (
+          <Animated.View
+            style={[
+              styles.removeTopShadow,
+              {
+                height: elevation,
+                backgroundColor,
+                top: -elevation,
+              },
+            ]}
+          />
+        )}
+      </SurfaceComponent>
     </View>
   );
 }

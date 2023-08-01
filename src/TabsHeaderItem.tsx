@@ -47,13 +47,14 @@ export default function TabsHeaderItem({
   showTextLabel?: boolean;
   mode: Mode;
 }) {
+  const baseColor = theme.colors.primary;
   const rippleColor = React.useMemo(
     () =>
-      Color(activeColor as any)
+      Color(baseColor as any)
         .alpha(0.32)
         .rgb()
         .string(),
-    [activeColor]
+    [baseColor]
   );
 
   const { color, opacity } = useAnimatedText({
@@ -88,6 +89,7 @@ export default function TabsHeaderItem({
           styles.touchableRipple,
           iconPosition === 'top' && styles.touchableRippleTop,
           tab.props.disabled && styles.touchableRippleDisabled,
+          { borderRadius: theme.roundness },
         ]}
         rippleColor={rippleColor}
         // @ts-ignore
@@ -148,7 +150,7 @@ export default function TabsHeaderItem({
               style={[
                 styles.text,
                 iconPosition === 'top' && styles.textTop,
-                { ...theme.fonts.bodyMedium, color, opacity },
+                { ...theme.fonts.titleSmall, color, opacity },
               ]}
             >
               {uppercase && !theme.isV3
@@ -174,6 +176,7 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   touchableRippleTop: {
     height: 72,
