@@ -72,7 +72,9 @@ function App({
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
+    <SafeAreaView
+      style={[styles.full, { backgroundColor: theme.colors.background }]}
+    >
       <ScrollView style={styles.root}>
         <View style={[styles.content, styles.padding]}>
           <View style={styles.titleContainer}>
