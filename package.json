@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",
-    "release": "release-it",
+    "release": "release-it --ci --github.autoGenerate",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn install"
   },
