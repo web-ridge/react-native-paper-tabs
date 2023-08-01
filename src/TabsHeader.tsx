@@ -14,10 +14,9 @@ import color from 'color';
 import * as React from 'react';
 import { useIndicator, useOffsetScroller } from './internal';
 import TabsHeaderItem from './TabsHeaderItem';
+import { TabsContext } from './context';
 
 export default function TabsHeader({
-  index,
-  goTo,
   children,
   position,
   offset,
@@ -30,6 +29,7 @@ export default function TabsHeader({
   uppercase,
   mode,
 }: SwiperRenderProps) {
+  const { index, goTo } = React.useContext(TabsContext);
   const { colors, dark: isDarkTheme, mode: themeMode } = theme;
   const {
     backgroundColor: customBackground,

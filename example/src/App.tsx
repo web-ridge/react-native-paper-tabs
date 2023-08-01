@@ -22,10 +22,12 @@ import {
   overlay,
   Paragraph,
   TouchableRipple,
+  Divider,
 } from 'react-native-paper';
 import {
   Tabs,
   TabScreen,
+  TabsProvider,
   useTabIndex,
   useTabNavigation,
 } from 'react-native-paper-tabs';
@@ -54,19 +56,18 @@ function App({
       ? overlay(3, theme.colors.surface)
       : (theme.colors.surface as any);
 
-  const onChangeIndex = React.useCallback((newIndex: number) => {
-    console.log('onChangeIndex', { newIndex });
-  }, []);
-
   const tabProps = {
     uppercase, // true/false | default=true | labels are uppercase
     showTextLabel: showText, // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
     iconPosition, // leading / top
     style: !dark ? { backgroundColor } : undefined, // works the same as AppBar in react-native-paper
     mode, // fixed, scrollable | default=fixed}
-    onChangeIndex,
-    // showLeadingSpace: true, // show leading space in scrollable tabs inside the header
+    showLeadingSpace: true, // show leading space in scrollable tabs inside the header
   };
+
+  function handleChangeIndex(index: number) {
+    console.log("Tab Index:", index);
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -120,67 +121,74 @@ function App({
             <Appbar.Action icon="menu" />
             <Appbar.Content title="react-native-paper-tabs" />
           </Appbar>
-          {mode === 'fixed' ? (
-            <Tabs {...tabProps}>
-              <TabScreen
-                label="Explore"
-                icon={showIcons ? 'compass' : undefined}
-                onPressIn={() => {
-                  console.log('onPressIn explore');
-                }}
-                onPress={() => {
-                  console.log('onPress explore');
-                }}
-              >
-                <ExploreWitHookExamples />
-              </TabScreen>
-              <TabScreen
-                label="Flights"
-                icon={showIcons ? 'airplane' : undefined}
-              >
-                <ScreenWithText text={'Flights'} />
-              </TabScreen>
-              <TabScreen
-                label="Trips"
-                icon={showIcons ? 'bag-personal' : undefined}
-              >
-                <ScreenWithText text={'Trips'} />
-              </TabScreen>
-            </Tabs>
-          ) : (
-            <Tabs {...tabProps}>
-              <TabScreen
-                label="Explore"
-                icon={showIcons ? 'compass' : undefined}
-              >
-                <ExploreWitHookExamples />
-              </TabScreen>
-              <TabScreen
-                label="Flights"
-                icon={showIcons ? 'airplane' : undefined}
-              >
-                <ScreenWithText text={'Flights'} />
-              </TabScreen>
-              <TabScreen
-                label="Trips"
-                icon={showIcons ? 'bag-personal' : undefined}
-              >
-                <ScreenWithText text={'Trips'} />
-              </TabScreen>
-              <TabScreen label="Bookings" icon={showIcons ? 'book' : undefined}>
-                <ScreenWithText text={'Bookings'} />
-              </TabScreen>
-              <TabScreen
-                label="Personal"
-                icon={showIcons ? 'shield-account' : undefined}
-              >
-                <ScreenWithText text={'Personal'} />
-              </TabScreen>
-              <TabScreen label="Settings" icon={showIcons ? 'cog' : undefined}>
-                <ScreenWithText text={'Settings'} />
-              </TabScreen>
-            </Tabs>
-          )}
+          <TabsProvider defaultIndex={0} onChangeIndex={handleChangeIndex} persistKey="test">
+            {mode === 'fixed' ? (
+              <Tabs {...tabProps}>
+                <TabScreen
+                  label="Explore"
+                  icon={showIcons ? 'compass' : undefined}
+                  onPressIn={() => {
+                    console.log('onPressIn explore');
+                  }}
+                  onPress={() => {
+                    console.log('onPress explore');
+                  }}
+                >
+                  <ExploreWitHookExamples />
+                </TabScreen>
+                <TabScreen
+                  label="Flights"
+                  icon={showIcons ? 'airplane' : undefined}
+                >
+                  <ScreenWithText text={'Flights'} />
+                </TabScreen>
+                <TabScreen
+                  label="Trips"
+                  icon={showIcons ? 'bag-personal' : undefined}
+                >
+                  <ScreenWithText text={'Trips'} />
+                </TabScreen>
+              </Tabs>
+            ) : (
+              <Tabs {...tabProps}>
+                <TabScreen
+                  label="Explore"
+                  icon={showIcons ? 'compass' : undefined}
+                >
+                  <ExploreWitHookExamples />
+                </TabScreen>
+                <TabScreen
+                  label="Flights"
+                  icon={showIcons ? 'airplane' : undefined}
+                >
+                  <ScreenWithText text={'Flights'} />
+                </TabScreen>
+                <TabScreen
+                  label="Trips"
+                  icon={showIcons ? 'bag-personal' : undefined}
+                >
+                  <ScreenWithText text={'Trips'} />
+                </TabScreen>
+                <TabScreen label="Bookings" icon={showIcons ? 'book' : undefined}>
+                  <ScreenWithText text={'Bookings'} />
+                </TabScreen>
+                <TabScreen
+                  label="Personal"
+                  icon={showIcons ? 'shield-account' : undefined}
+                >
+                  <ScreenWithText text={'Personal'} />
+                </TabScreen>
+                <TabScreen label="Settings" icon={showIcons ? 'cog' : undefined}>
+                  <ScreenWithText text={'Settings'} />
+                </TabScreen>
+              </Tabs>
+            )}
+
+            <Enter />
+            <Divider />
+            <ExampleGoToFromProvider />
+
+          </TabsProvider>
         </Animated.View>
         <Animated.View
           style={[
@@ -269,7 +277,23 @@ function ExploreWitHookExamples() {
   );
 }
 
-function ScreenWithText({ text }: { text: string }) {
+function ExampleGoToFromProvider() {
+  const goTo = useTabNavigation();
+  return (
+    <Row>
+      <Button
+        uppercase={false}
+        mode="outlined"
+        onPress={() => goTo(2)}
+
+      >
+        Go to Trips
+      </Button>
+    </Row>
+  );
+}
+
+function ScreenWithText({ text }: { text: string; }) {
   return (
     <View style={styles.screenWithText}>
       <Title>{text}</Title>
@@ -281,7 +305,7 @@ function Enter() {
   return <View style={styles.enter} />;
 }
 
-function Row({ children }: { children: any }) {
+function Row({ children }: { children: any; }) {
   return <View style={styles.row}>{children}</View>;
 }
 
@@ -310,7 +334,7 @@ function Block({
   );
 }
 
-function Label({ children }: { children: string }) {
+function Label({ children }: { children: string; }) {
   const theme = useTheme();
   return (
     <Text style={[styles.label, { ...theme.fonts.medium }]}>{children}</Text>
@@ -328,23 +352,23 @@ export default function AppWithProviders() {
       theme={
         dark
           ? {
-              ...DarkTheme,
-              roundness: 10,
-              colors: {
-                ...DarkTheme.colors,
-                // primary: '#F59E00',
-                // accent: '#FBBE5E',
-              },
-            }
+            ...DarkTheme,
+            roundness: 10,
+            colors: {
+              ...DarkTheme.colors,
+              // primary: '#F59E00',
+              // accent: '#FBBE5E',
+            },
+          }
           : {
-              ...DefaultTheme,
-              roundness: 10,
-              colors: {
-                ...DefaultTheme.colors,
-                // primary: '#F59E00',
-                // accent: '#FBBE5E',
-              },
-            }
+            ...DefaultTheme,
+            roundness: 10,
+            colors: {
+              ...DefaultTheme.colors,
+              // primary: '#F59E00',
+              // accent: '#FBBE5E',
+            },
+          }
       }
     >
       <SafeAreaProvider>
@@ -354,7 +378,7 @@ export default function AppWithProviders() {
   );
 }
 
-function TwitterFollowButton({ userName }: { userName: string }) {
+function TwitterFollowButton({ userName }: { userName: string; }) {
   return (
     <Button
       uppercase={false}
@@ -429,7 +453,7 @@ const styles = StyleSheet.create({
   },
   contentInline: {
     padding: 0,
-    height: 300,
+    height: 400,
   },
   contentShadow: {
     shadowColor: '#000',

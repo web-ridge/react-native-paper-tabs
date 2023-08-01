@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { SwiperProps } from './utils';
 import type { TabScreenProps } from './TabScreen';
-import { TabsContext } from './context';
+import { useTabIndex } from './context';
 import TabsHeader from './TabsHeader';
 
 function Swiper(props: SwiperProps) {
@@ -10,22 +10,14 @@ function Swiper(props: SwiperProps) {
     theme,
     dark,
     style,
-    defaultIndex,
-    onChangeIndex,
     iconPosition,
     showTextLabel,
     showLeadingSpace,
     uppercase,
     mode,
   } = props;
-  const [index, setIndex] = React.useState<number>(defaultIndex || 0);
-  const goTo = React.useCallback(
-    (ind: number) => {
-      setIndex(ind);
-      onChangeIndex(ind);
-    },
-    [setIndex, onChangeIndex]
-  );
+
+  const index = useTabIndex();
 
   let children: React.Component<TabScreenProps>[] = props.children;
 
@@ -34,8 +26,6 @@ function Swiper(props: SwiperProps) {
     return null;
   }
   const renderProps = {
-    index,
-    goTo,
     children,
     theme,
     dark,
@@ -52,9 +42,7 @@ function Swiper(props: SwiperProps) {
   return (
     <View style={styles.root}>
       <TabsHeader {...renderProps} />
-      <TabsContext.Provider value={{ goTo, index }}>
-        {currentScreen}
-      </TabsContext.Provider>
+      {currentScreen}
     </View>
   );
 }
