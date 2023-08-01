@@ -1,25 +1,30 @@
 {
-  "name": "React Native Paper Tabs",
-  "displayName": "PaperTabs",
-
   "expo": {
-    "icon": "./assets/icon.png",
-    "name": "react-native-paper-tabs-example",
-    "slug": "react-native-paper-tabs-example",
-    "description": "Smooth and fast cross platform Material Design Tabs for React Native Paper",
-    "privacy": "public",
+    "name": "example",
+    "slug": "example",
     "version": "1.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-
-    "ios": {
-      "supportsTablet": true
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

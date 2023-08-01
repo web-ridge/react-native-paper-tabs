@@ -16,8 +16,8 @@ import {
   Title,
   Text,
   Switch,
-  DefaultTheme,
-  DarkTheme,
+  MD3DarkTheme,
+  MD3LightTheme,
   useTheme,
   overlay,
   Paragraph,
@@ -45,6 +45,8 @@ function App({
   const [uppercase, setUppercase] = React.useState<boolean>(true);
   const [showIcons, setShowIcons] = React.useState<boolean>(true);
   const [showText, setShowText] = React.useState<boolean>(true);
+  const [showBadges, setShowBadges] = React.useState<boolean>(true);
+
   const [iconPosition, setIconPosition] = React.useState<'leading' | 'top'>(
     'leading'
   );
@@ -66,7 +68,7 @@ function App({
   };
 
   function handleChangeIndex(index: number) {
-    console.log("Tab Index:", index);
+    console.log('Tab Index:', index);
   }
 
   return (
@@ -121,12 +123,17 @@ function App({
             <Appbar.Action icon="menu" />
             <Appbar.Content title="react-native-paper-tabs" />
           </Appbar>
-          <TabsProvider defaultIndex={0} onChangeIndex={handleChangeIndex} persistKey="test">
+          <TabsProvider
+            defaultIndex={0}
+            onChangeIndex={handleChangeIndex}
+            persistKey="test"
+          >
             {mode === 'fixed' ? (
               <Tabs {...tabProps}>
                 <TabScreen
                   label="Explore"
                   icon={showIcons ? 'compass' : undefined}
+                  badge={showBadges ? '33' : undefined}
                   onPressIn={() => {
                     console.log('onPressIn explore');
                   }}
@@ -169,7 +176,10 @@ function App({
                 >
                   <ScreenWithText text={'Trips'} />
                 </TabScreen>
-                <TabScreen label="Bookings" icon={showIcons ? 'book' : undefined}>
+                <TabScreen
+                  label="Bookings"
+                  icon={showIcons ? 'book' : undefined}
+                >
                   <ScreenWithText text={'Bookings'} />
                 </TabScreen>
                 <TabScreen
@@ -178,7 +188,10 @@ function App({
                 >
                   <ScreenWithText text={'Personal'} />
                 </TabScreen>
-                <TabScreen label="Settings" icon={showIcons ? 'cog' : undefined}>
+                <TabScreen
+                  label="Settings"
+                  icon={showIcons ? 'cog' : undefined}
+                >
                   <ScreenWithText text={'Settings'} />
                 </TabScreen>
               </Tabs>
@@ -187,7 +200,6 @@ function App({
             <Enter />
             <Divider />
             <ExampleGoToFromProvider />
-
           </TabsProvider>
         </Animated.View>
         <Animated.View
@@ -230,6 +242,13 @@ function App({
           <Row>
             <Label>Show text</Label>
             <Switch value={showText} onValueChange={(v) => setShowText(v)} />
+          </Row>
+          <Row>
+            <Label>Show badge</Label>
+            <Switch
+              value={showBadges}
+              onValueChange={(v) => setShowBadges(v)}
+            />
           </Row>
           <Row>
             <Title>Icon position</Title>
@@ -281,19 +300,14 @@ function ExampleGoToFromProvider() {
   const goTo = useTabNavigation();
   return (
     <Row>
-      <Button
-        uppercase={false}
-        mode="outlined"
-        onPress={() => goTo(2)}
-
-      >
+      <Button uppercase={false} mode="outlined" onPress={() => goTo(2)}>
         Go to Trips
       </Button>
     </Row>
   );
 }
 
-function ScreenWithText({ text }: { text: string; }) {
+function ScreenWithText({ text }: { text: string }) {
   return (
     <View style={styles.screenWithText}>
       <Title>{text}</Title>
@@ -305,7 +319,7 @@ function Enter() {
   return <View style={styles.enter} />;
 }
 
-function Row({ children }: { children: any; }) {
+function Row({ children }: { children: any }) {
   return <View style={styles.row}>{children}</View>;
 }
 
@@ -334,10 +348,12 @@ function Block({
   );
 }
 
-function Label({ children }: { children: string; }) {
+function Label({ children }: { children: string }) {
   const theme = useTheme();
   return (
-    <Text style={[styles.label, { ...theme.fonts.medium }]}>{children}</Text>
+    <Text style={[styles.label, { ...theme.fonts.bodyMedium }]}>
+      {children}
+    </Text>
   );
 }
 
@@ -348,29 +364,7 @@ export default function AppWithProviders() {
   };
 
   return (
-    <PaperProvider
-      theme={
-        dark
-          ? {
-            ...DarkTheme,
-            roundness: 10,
-            colors: {
-              ...DarkTheme.colors,
-              // primary: '#F59E00',
-              // accent: '#FBBE5E',
-            },
-          }
-          : {
-            ...DefaultTheme,
-            roundness: 10,
-            colors: {
-              ...DefaultTheme.colors,
-              // primary: '#F59E00',
-              // accent: '#FBBE5E',
-            },
-          }
-      }
-    >
+    <PaperProvider theme={dark ? MD3DarkTheme : MD3LightTheme}>
       <SafeAreaProvider>
         <App onToggleDarkMode={onToggleDarkMode} dark={dark} />
       </SafeAreaProvider>
@@ -378,7 +372,7 @@ export default function AppWithProviders() {
   );
 }
 
-function TwitterFollowButton({ userName }: { userName: string; }) {
+function TwitterFollowButton({ userName }: { userName: string }) {
   return (
     <Button
       uppercase={false}

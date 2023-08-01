@@ -6,14 +6,7 @@ const root = path.resolve(__dirname, '..');
 const node_modules = path.join(__dirname, 'node_modules');
 
 module.exports = async function (env, argv) {
-  const config = await createExpoWebpackConfigAsync(
-    {
-      ...env,
-      // Passing true will enable the default Workbox + Expo SW configuration.
-      offline: false,
-    },
-    argv
-  );
+  const config = await createExpoWebpackConfigAsync(env, argv);
 
   config.module.rules.push({
     test: /\.(js|jsx|ts|tsx)$/,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { ViewStyle } from 'react-native';
 import { withTheme } from 'react-native-paper';
 import Swiper from './Swiper';
-import type { Theme } from 'react-native-paper/lib/typescript/types';
+import type { MD3LightTheme } from 'react-native-paper';
 
 import type { IconPosition, Mode } from './utils';
 
@@ -19,7 +19,7 @@ function Tabs({
   disableSwipe = false,
 }: {
   children: any;
-  theme: Theme;
+  theme: typeof MD3LightTheme;
   dark?: boolean;
   style?: ViewStyle;
   iconPosition?: IconPosition;

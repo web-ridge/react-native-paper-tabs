@@ -5,10 +5,11 @@ let MaterialCommunityIcons: any;
 
 try {
   // Optionally require vector-icons
-  MaterialCommunityIcons = Animated.createAnimatedComponent(
-    require('react-native-vector-icons/MaterialCommunityIcons').default
-  );
-} catch (e) {
+  const component =
+    require('react-native-vector-icons/MaterialCommunityIcons').default;
+  MaterialCommunityIcons = Animated.createAnimatedComponent(component);
+} catch (_e: any) {
+  const e = _e;
   let isErrorLogged = false;
 
   // Fallback component for icons

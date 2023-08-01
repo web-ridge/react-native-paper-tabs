@@ -1,16 +1,10 @@
 import * as React from 'react';
-import {
-  LayoutChangeEvent,
-  Animated,
-  StyleSheet,
-  View,
-  Platform,
-  TextProps,
-} from 'react-native';
+import { Animated, StyleSheet, View, Platform } from 'react-native';
+import type { LayoutChangeEvent, TextProps } from 'react-native';
 import { Badge, Text, TouchableRipple } from 'react-native-paper';
+import type { MD3LightTheme } from 'react-native-paper';
 import type { ReactElement } from 'react';
 import type { TabScreenProps } from './TabScreen';
-import type { Theme } from 'react-native-paper/lib/typescript/types';
 import Color from 'color';
 import MaterialCommunityIcon from './MaterialCommunityIcon';
 import { useAnimatedText } from './internal';
@@ -43,7 +37,7 @@ export default function TabsHeaderItem({
   onTabLayout: (index: number, e: LayoutChangeEvent) => void;
   activeColor: string;
   textColor: string;
-  theme: Theme;
+  theme: typeof MD3LightTheme;
   position: Animated.Value | undefined;
   offset: Animated.Value | undefined;
   childrenCount: number;
@@ -70,6 +64,11 @@ export default function TabsHeaderItem({
     tabIndex,
     childrenCount,
   });
+
+  const badgeIsFilled =
+    tab.props.badge !== undefined && tab.props.badge !== null;
+
+  const badgeWithoutContent = typeof tab.props.badge === 'boolean';
 
   return (
     <View
@@ -119,25 +118,27 @@ export default function TabsHeaderItem({
                 style={{ color: color, opacity }}
                 size={24}
               />
-              {tab.props.badge ? <View
-                style={[
-                  styles.badgeContainer,
-                  {
-                    right:
-                      (tab.props.badge != null && typeof tab.props.badge !== 'boolean'
-                        ? String(tab.props.badge).length * -2
-                        : 0) - 2,
-                  },
-                ]}
-              >
-                {typeof tab.props.badge === 'boolean' ? (
-                  <Badge visible={tab.props.badge} size={8} />
-                ) : (
-                    <Badge visible={tab.props.badge != null} size={16}>
-                      {tab.props.badge}
-                  </Badge>
-                )}
-              </View> : null}
+            </View>
+          ) : null}
+          {badgeIsFilled ? (
+            <View
+              style={[
+                styles.badgeContainer,
+                {
+                  right:
+                    (badgeWithoutContent
+                      ? String(tab.props.badge).length * -2
+                      : 0) - 2,
+                },
+              ]}
+            >
+              {badgeWithoutContent ? (
+                <Badge visible={true} size={8} />
+              ) : (
+                <Badge visible={true} size={16}>
+                  {tab.props.badge as any}
+                </Badge>
+              )}
             </View>
           ) : null}
           {showTextLabel ? (
@@ -146,10 +147,12 @@ export default function TabsHeaderItem({
               style={[
                 styles.text,
                 iconPosition === 'top' && styles.textTop,
-                { ...theme.fonts.medium, color, opacity },
+                { ...theme.fonts.bodyMedium, color, opacity },
               ]}
             >
-              {uppercase ? tab.props.label.toUpperCase() : tab.props.label}
+              {uppercase && !theme.isV3
+                ? tab.props.label.toUpperCase()
+                : tab.props.label}
             </AnimatedText>
           ) : null}
         </View>

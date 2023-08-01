@@ -1,13 +1,9 @@
 import type { SwiperRenderProps } from './utils';
-import {
-  Animated,
+import { Animated, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import type {
   LayoutChangeEvent,
   LayoutRectangle,
-  Platform,
-  ScrollView,
-  StyleSheet,
   ViewStyle,
-  View,
 } from 'react-native';
 import { overlay, Surface } from 'react-native-paper';
 import color from 'color';
@@ -30,7 +26,7 @@ export default function TabsHeader({
   mode,
 }: SwiperRenderProps) {
   const { index, goTo } = React.useContext(TabsContext);
-  const { colors, dark: isDarkTheme, mode: themeMode } = theme;
+  const { colors, dark: isDarkTheme, mode: themeMode, isV3 } = theme;
   const {
     backgroundColor: customBackground,
     elevation = 4,
@@ -39,11 +35,17 @@ export default function TabsHeader({
 
   let isDark: boolean;
 
+  const backgroundColorV2 =
+    isDarkTheme && themeMode === 'adaptive'
+      ? overlay(elevation, colors.surface)
+      : colors.primary;
+
+  const backgroundColorV3 = theme.colors.background;
   const backgroundColor = customBackground
     ? customBackground
-    : isDarkTheme && themeMode === 'adaptive'
-    ? overlay(elevation, colors.surface)
-    : colors.primary;
+    : isV3
+    ? backgroundColorV3
+    : backgroundColorV2;
 
   let hasPrimaryBackground = colors.primary === backgroundColor;
   if (typeof dark === 'boolean') {
@@ -205,7 +207,7 @@ export default function TabsHeader({
               {
                 backgroundColor: activeColor,
               },
-              indicatorStyle,
+              indicatorStyle as any,
             ]}
           />
         </ScrollView>

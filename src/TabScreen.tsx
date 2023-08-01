@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
 import type { GestureResponderEvent } from 'react-native';
+import type { IconSource } from 'react-native-paper/lib/typescript/src/components/Icon';
 
 export interface TabScreenProps {
   label: string;

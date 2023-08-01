@@ -6,7 +6,7 @@ import type {
   View,
   ViewStyle,
 } from 'react-native';
-import type { Theme } from 'react-native-paper/lib/typescript/types';
+import type { MD3LightTheme } from 'react-native-paper';
 import type { MutableRefObject, RefObject } from 'react';
 export type AnimatedViewStyle = Animated.AnimatedProps<StyleProp<ViewStyle>>;
 export type AnimatedTextStyle = Animated.AnimatedProps<StyleProp<TextStyle>>;
@@ -16,7 +16,7 @@ export type IconPosition = 'leading' | 'top';
 export interface SwiperRenderProps {
   dark: boolean | undefined;
   style: ViewStyle | undefined;
-  theme: Theme;
+  theme: typeof MD3LightTheme;
   children: any;
   position: Animated.Value | undefined;
   offset: Animated.Value | undefined;
@@ -30,7 +30,7 @@ export interface SwiperRenderProps {
 export interface SwiperProps {
   dark: boolean | undefined;
   style: ViewStyle | undefined;
-  theme: Theme;
+  theme: typeof MD3LightTheme;
   children: any;
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
@@ -68,7 +68,7 @@ export interface IndicatorArgs {
 export type IndicatorReturns = [
   RefObject<View> | undefined,
   () => any,
-  AnimatedViewStyle | null
+  AnimatedViewStyle | null,
 ];
 
 export interface TabsProviderProps {
