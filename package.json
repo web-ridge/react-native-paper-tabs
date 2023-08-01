@@ -33,7 +33,8 @@
     "prepack": "bob build",
     "release": "release-it --ci --github.autoGenerate",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install"
+    "bootstrap": "yarn example && yarn install",
+    "build-example": "cd example && npx expo export:web"
   },
   "keywords": [
     "react-native",
