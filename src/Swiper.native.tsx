@@ -100,7 +100,7 @@ function SwiperNative(props: SwiperProps) {
           }
         )}
       >
-        {React.Children.map(children, (tab, tabIndex) => (
+        {React.Children.map(children.filter(Boolean), (tab, tabIndex) => (
           <View style={styles.viewPager} key={tab.props.label || tabIndex}>
             {tab}
           </View>

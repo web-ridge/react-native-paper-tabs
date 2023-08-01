@@ -60,7 +60,9 @@ export default function TabsHeader({
   }
 
   const textColorV2 = isDark ? '#fff' : '#000';
-  const activeColorV2 = hasPrimaryBackground ? textColor : theme.colors.primary;
+  const activeColorV2 = hasPrimaryBackground
+    ? textColorV2
+    : theme.colors.primary;
 
   // Color (active)	On surface	md.sys.color.on-surface
   // Color (inactive)	On surface variant	md.sys.color.on-surface-variant
@@ -192,7 +194,7 @@ export default function TabsHeader({
             <View style={styles.scrollablePadding} />
           ) : null}
 
-          {React.Children.map(children, (tab, tabIndex) => (
+          {React.Children.map(children.filter(Boolean), (tab, tabIndex) => (
             <TabsHeaderItem
               theme={theme}
               tabIndex={tabIndex}

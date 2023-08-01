@@ -41,6 +41,7 @@ function App({
   const [backgroundColor, setBackgroundColor] = React.useState<
     string | undefined
   >(undefined);
+  const [showFlightTab, setShowFlightTab] = React.useState<boolean>(true);
   const [uppercase, setUppercase] = React.useState<boolean>(true);
   const [showIcons, setShowIcons] = React.useState<boolean>(true);
   const [showText, setShowText] = React.useState<boolean>(true);
@@ -140,12 +141,14 @@ function App({
                 >
                   <ExploreWitHookExamples />
                 </TabScreen>
-                <TabScreen
-                  label="Flights"
-                  icon={showIcons ? 'airplane' : undefined}
-                >
-                  <ScreenWithText text={'Flights'} />
-                </TabScreen>
+                {showFlightTab && (
+                  <TabScreen
+                    label="Flights"
+                    icon={showIcons ? 'airplane' : undefined}
+                  >
+                    <ScreenWithText text={'Flights'} />
+                  </TabScreen>
+                )}
                 <TabScreen
                   label="Trips"
                   icon={showIcons ? 'bag-personal' : undefined}
@@ -245,6 +248,13 @@ function App({
             <Switch
               value={showBadges}
               onValueChange={(v) => setShowBadges(v)}
+            />
+          </Row>
+          <Row>
+            <Label>Show flights tabs</Label>
+            <Switch
+              value={showFlightTab}
+              onValueChange={(v) => setShowFlightTab(v)}
             />
           </Row>
           <Row>
