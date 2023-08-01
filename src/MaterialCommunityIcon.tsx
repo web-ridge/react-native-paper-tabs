@@ -4,12 +4,12 @@ import { StyleSheet, Animated } from 'react-native';
 let MaterialCommunityIcons: any;
 
 try {
-  // Optionally require vector-icons
-  const component =
-    require('react-native-vector-icons/MaterialCommunityIcons').default;
-  MaterialCommunityIcons = Animated.createAnimatedComponent(component);
+  MaterialCommunityIcons = Animated.createAnimatedComponent(
+    require('react-native-vector-icons/MaterialCommunityIcons').default
+  );
 } catch (_e: any) {
   const e = _e;
+  console.log({ e });
   let isErrorLogged = false;
 
   // Fallback component for icons

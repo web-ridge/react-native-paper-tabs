@@ -74,7 +74,6 @@ function Example() {
       <TabsProvider
         defaultIndex={0}
         onChangeIndex={handleChangeIndex}
-        persistKey="test"
       >
         <Tabs
           // uppercase={false} // true/false | default=true | labels are uppercase

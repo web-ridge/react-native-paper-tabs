@@ -31,7 +31,6 @@ import {
   useTabIndex,
   useTabNavigation,
 } from 'react-native-paper-tabs';
-
 function App({
   onToggleDarkMode,
   dark,
@@ -125,11 +124,7 @@ function App({
             <Appbar.Action icon="menu" />
             <Appbar.Content title="react-native-paper-tabs" />
           </Appbar>
-          <TabsProvider
-            defaultIndex={0}
-            onChangeIndex={handleChangeIndex}
-            persistKey="test"
-          >
+          <TabsProvider defaultIndex={0} onChangeIndex={handleChangeIndex}>
             {mode === 'fixed' ? (
               <Tabs {...tabProps}>
                 <TabScreen

@@ -6,9 +6,10 @@ import type { MD3LightTheme } from 'react-native-paper';
 import type { ReactElement } from 'react';
 import type { TabScreenProps } from './TabScreen';
 import Color from 'color';
-import MaterialCommunityIcon from './MaterialCommunityIcon';
 import { useAnimatedText } from './internal';
 import type { IconPosition, Mode } from './utils';
+import MaterialCommunityIcon from './MaterialCommunityIcon';
+
 const AnimatedText = Animated.createAnimatedComponent<
   React.ComponentType<TextProps>
 >(Text as any);

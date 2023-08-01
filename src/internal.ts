@@ -30,6 +30,9 @@ export function useIndicator({
   index,
   layouts,
 }: IndicatorArgs): IndicatorReturns {
+  const [indicatorStyle, setIndicatorStyle] = React.useState<ViewStyle | null>(
+    null
+  );
   const indicatorRef = React.useRef<View>(null);
   const updateIndicator = React.useCallback(() => {
     if (!indicatorRef.current || !layouts.current) {
@@ -37,9 +40,7 @@ export function useIndicator({
     }
     const cl = layouts.current[index];
     if (cl) {
-      indicatorRef.current.setNativeProps({
-        style: getIndicatorStyle({ left: cl.x, width: cl.width }),
-      });
+      setIndicatorStyle(getIndicatorStyle({ left: cl.x, width: cl.width }));
     }
   }, [index, indicatorRef, layouts]);
 
@@ -48,7 +49,7 @@ export function useIndicator({
     updateIndicator();
   }, [updateIndicator]);
 
-  return [indicatorRef, updateIndicator, null];
+  return [indicatorRef, updateIndicator, indicatorStyle];
 }
 
 export function useOffsetScroller(_: OffsetScrollArgs) {}

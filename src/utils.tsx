@@ -65,15 +65,12 @@ export interface IndicatorArgs {
   offset: Animated.Value | undefined;
   tabsLayout: LayoutRectangle | null;
 }
-export type IndicatorReturns = [
-  RefObject<View> | undefined,
-  () => any,
-  AnimatedViewStyle | null,
-];
+
+// prettier-ignore
+export type IndicatorReturns = [RefObject<View> | undefined, () => any, AnimatedViewStyle | null];
 
 export interface TabsProviderProps {
   children: any;
   onChangeIndex: (index: number) => void;
   defaultIndex?: number;
-  persistKey?: string;
 }
