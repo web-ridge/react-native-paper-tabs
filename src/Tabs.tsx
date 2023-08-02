@@ -7,7 +7,6 @@ import type { MD3LightTheme } from 'react-native-paper';
 import type { IconPosition, Mode } from './utils';
 
 function Tabs({
-  children,
   theme,
   dark,
   style,
@@ -18,6 +17,7 @@ function Tabs({
   showLeadingSpace = true,
   disableSwipe = false,
   tabHeaderStyle,
+  ...rest
 }: {
   children: any;
   theme: typeof MD3LightTheme;
@@ -31,6 +31,8 @@ function Tabs({
   disableSwipe?: boolean;
   tabHeaderStyle?: ViewStyle | undefined;
 }) {
+  const children = React.Children.toArray(rest.children).filter(Boolean);
+
   return (
     <Swiper
       style={style}

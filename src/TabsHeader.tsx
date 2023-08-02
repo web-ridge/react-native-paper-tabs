@@ -26,9 +26,8 @@ export default function TabsHeader({
   uppercase,
   mode,
   tabHeaderStyle,
-  ...rest
+  children,
 }: SwiperRenderProps) {
-  const children = React.Children.toArray(rest.children).filter(Boolean);
   const { index, goTo } = React.useContext(TabsContext);
   const { colors, dark: isDarkTheme, mode: themeMode, isV3 } = theme;
   const {
