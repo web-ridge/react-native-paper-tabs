@@ -11,9 +11,10 @@ import * as React from 'react';
 import { useIndicator, useOffsetScroller } from './internal';
 import TabsHeaderItem from './TabsHeaderItem';
 import { TabsContext } from './context';
+import type { ReactElement } from 'react';
+import type { TabScreenProps } from './TabScreen';
 
 export default function TabsHeader({
-  children,
   position,
   offset,
   theme,
@@ -24,7 +25,9 @@ export default function TabsHeader({
   showLeadingSpace,
   uppercase,
   mode,
+  ...rest
 }: SwiperRenderProps) {
+  const children = React.Children.toArray(rest.children).filter(Boolean);
   const { index, goTo } = React.useContext(TabsContext);
   const { colors, dark: isDarkTheme, mode: themeMode, isV3 } = theme;
   const {
@@ -194,11 +197,11 @@ export default function TabsHeader({
             <View style={styles.scrollablePadding} />
           ) : null}
 
-          {React.Children.map(children.filter(Boolean), (tab, tabIndex) => (
+          {React.Children.map(children, (tab, tabIndex) => (
             <TabsHeaderItem
               theme={theme}
               tabIndex={tabIndex}
-              tab={tab}
+              tab={tab as ReactElement<TabScreenProps>}
               active={index === tabIndex}
               onTabLayout={onTabLayout}
               goTo={goTo}
