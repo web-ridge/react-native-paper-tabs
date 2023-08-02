@@ -2,23 +2,21 @@ import React, { useState } from 'react';
 import { TabsContext } from './context';
 import type { TabsProviderProps } from './utils';
 
-export const TabsProvider = ({
+export function TabsProvider({
   children,
   onChangeIndex,
   defaultIndex,
-}: TabsProviderProps): JSX.Element => {
+}: TabsProviderProps) {
   const [index, setIndex] = useState<number>(defaultIndex || 0);
   const goTo = React.useCallback(
     (ind: number) => {
       setIndex(ind);
-      onChangeIndex(ind);
+      onChangeIndex?.(ind);
     },
     [setIndex, onChangeIndex]
   );
 
-  return (
-    <TabsContext.Provider value={{ goTo, index }}>
-      {children}
-    </TabsContext.Provider>
-  );
-};
+  const value = React.useMemo(() => ({ goTo, index }), [goTo, index]);
+
+  return <TabsContext.Provider value={value}>{children}</TabsContext.Provider>;
+}

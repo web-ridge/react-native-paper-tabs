@@ -71,6 +71,6 @@ export type IndicatorReturns = [RefObject<View> | undefined, () => any, Animated
 
 export interface TabsProviderProps {
   children: any;
-  onChangeIndex: (index: number) => void;
+  onChangeIndex?: (index: number) => void;
   defaultIndex?: number;
 }

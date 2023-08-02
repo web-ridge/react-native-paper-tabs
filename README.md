@@ -73,10 +73,10 @@ function Example() {
     return (
       <TabsProvider
         defaultIndex={0}
-        onChangeIndex={handleChangeIndex}
+        // onChangeIndex={handleChangeIndex} optional
       >
         <Tabs
-          // uppercase={false} // true/false | default=true | labels are uppercase
+          // uppercase={false} // true/false | default=true (on material v2) | labels are uppercase
           // showTextLabel={false} // true/false | default=false (KEEP PROVIDING LABEL WE USE IT AS KEY INTERNALLY + SCREEN READERS)
           // iconPosition // leading, top | default=leading
           // style={{ backgroundColor:'#fff' }} // works the same as AppBar in react-native-paper
