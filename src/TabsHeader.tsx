@@ -25,6 +25,7 @@ export default function TabsHeader({
   showLeadingSpace,
   uppercase,
   mode,
+  tabHeaderStyle,
   ...rest
 }: SwiperRenderProps) {
   const children = React.Children.toArray(rest.children).filter(Boolean);
@@ -166,7 +167,7 @@ export default function TabsHeader({
   const SurfaceComponent = theme.isV3 ? View : Surface;
 
   return (
-    <View style={styles.relative}>
+    <Animated.View style={[styles.relative, tabHeaderStyle]}>
       <SurfaceComponent
         style={[
           { backgroundColor, elevation },
@@ -241,7 +242,7 @@ export default function TabsHeader({
           />
         )}
       </SurfaceComponent>
-    </View>
+    </Animated.View>
   );
 }
 

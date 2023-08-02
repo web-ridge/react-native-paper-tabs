@@ -15,6 +15,7 @@ function Swiper(props: SwiperProps) {
     showLeadingSpace,
     uppercase,
     mode,
+    tabHeaderStyle,
   } = props;
 
   const index = useTabIndex();
@@ -37,6 +38,7 @@ function Swiper(props: SwiperProps) {
     showLeadingSpace,
     uppercase,
     mode,
+    tabHeaderStyle,
   };
 
   return (

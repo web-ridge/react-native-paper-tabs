@@ -25,6 +25,7 @@ export interface SwiperRenderProps {
   showLeadingSpace?: boolean;
   uppercase: boolean;
   mode: Mode;
+  tabHeaderStyle: ViewStyle | undefined;
 }
 
 export interface SwiperProps {
@@ -38,6 +39,7 @@ export interface SwiperProps {
   uppercase: boolean;
   mode: Mode;
   disableSwipe?: boolean;
+  tabHeaderStyle: ViewStyle | undefined;
 }
 
 export interface OffsetScrollArgs {

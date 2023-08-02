@@ -17,6 +17,7 @@ function Tabs({
   showTextLabel = true,
   showLeadingSpace = true,
   disableSwipe = false,
+  tabHeaderStyle,
 }: {
   children: any;
   theme: typeof MD3LightTheme;
@@ -28,6 +29,7 @@ function Tabs({
   uppercase?: boolean;
   mode?: Mode;
   disableSwipe?: boolean;
+  tabHeaderStyle?: ViewStyle | undefined;
 }) {
   return (
     <Swiper
@@ -40,6 +42,7 @@ function Tabs({
       showLeadingSpace={showLeadingSpace}
       mode={mode}
       disableSwipe={disableSwipe}
+      tabHeaderStyle={tabHeaderStyle}
     >
       {children}
     </Swiper>
