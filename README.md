@@ -30,7 +30,6 @@ Web demo: [reactnativepapertabs.com](http://reactnativepapertabs.com/)
 
 
 ## About us
-Test commit
 We want developers to be able to build software faster using modern tools like GraphQL, Golang and React Native.
 
 Give us a follow on Twitter:
