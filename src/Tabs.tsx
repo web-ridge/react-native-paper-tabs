@@ -17,6 +17,7 @@ function Tabs({
   showLeadingSpace = true,
   disableSwipe = false,
   tabHeaderStyle,
+  tabLabelStyle,
   ...rest
 }: {
   children: any;
@@ -30,6 +31,7 @@ function Tabs({
   mode?: Mode;
   disableSwipe?: boolean;
   tabHeaderStyle?: ViewStyle | undefined;
+  tabLabelStyle?: ViewStyle | undefined;
 }) {
   const children = React.Children.toArray(rest.children).filter(Boolean);
 
@@ -45,6 +47,7 @@ function Tabs({
       mode={mode}
       disableSwipe={disableSwipe}
       tabHeaderStyle={tabHeaderStyle}
+      tabLabelStyle={tabLabelStyle}
     >
       {children}
     </Swiper>
