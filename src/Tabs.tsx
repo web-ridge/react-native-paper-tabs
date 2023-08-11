@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { ViewStyle } from 'react-native';
+import type { ViewStyle, TextStyle } from 'react-native';
 import { withTheme } from 'react-native-paper';
 import Swiper from './Swiper';
 import type { MD3LightTheme } from 'react-native-paper';
@@ -31,7 +31,7 @@ function Tabs({
   mode?: Mode;
   disableSwipe?: boolean;
   tabHeaderStyle?: ViewStyle | undefined;
-  tabLabelStyle?: ViewStyle | undefined;
+  tabLabelStyle?: TextStyle | undefined;
 }) {
   const children = React.Children.toArray(rest.children).filter(Boolean);
 

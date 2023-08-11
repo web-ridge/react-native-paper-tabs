@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Animated, StyleSheet, View, Platform } from 'react-native';
-import type { LayoutChangeEvent, TextProps, ViewStyle } from 'react-native';
+import type { LayoutChangeEvent, TextProps, TextStyle } from 'react-native';
 import { Badge, Text, TouchableRipple } from 'react-native-paper';
 import type { MD3LightTheme } from 'react-native-paper';
 import type { ReactElement } from 'react';
@@ -47,7 +47,7 @@ export default function TabsHeaderItem({
   iconPosition?: IconPosition;
   showTextLabel?: boolean;
   mode: Mode;
-  tabLabelStyle?: ViewStyle | undefined;
+  tabLabelStyle?: TextStyle | undefined;
 }) {
   const baseColor = theme.colors.primary;
   const rippleColor = React.useMemo(
