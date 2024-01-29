@@ -141,20 +141,20 @@ function App({
                 >
                   <ExploreWitHookExamples />
                 </TabScreen>
-                {/*{showFlightTab && (*/}
-                {/*  <TabScreen*/}
-                {/*    label="Flights"*/}
-                {/*    icon={showIcons ? 'airplane' : undefined}*/}
-                {/*  >*/}
-                {/*    <ScreenWithText text={'Flights'} />*/}
-                {/*  </TabScreen>*/}
-                {/*)}*/}
-                {/*<TabScreen*/}
-                {/*  label="Trips"*/}
-                {/*  icon={showIcons ? 'bag-personal' : undefined}*/}
-                {/*>*/}
-                {/*  <ScreenWithText text={'Trips'} />*/}
-                {/*</TabScreen>*/}
+                {showFlightTab && (
+                  <TabScreen
+                    label="Flights"
+                    icon={showIcons ? 'airplane' : undefined}
+                  >
+                    <ScreenWithText text={'Flights'} />
+                  </TabScreen>
+                )}
+                <TabScreen
+                  label="Trips"
+                  icon={showIcons ? 'bag-personal' : undefined}
+                >
+                  <ScreenWithText text={'Trips'} />
+                </TabScreen>
               </Tabs>
             ) : (
               <Tabs {...tabProps}>
