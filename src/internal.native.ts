@@ -22,16 +22,22 @@ export function useAnimatedText({
   const inputRange = childrenA.map((_, i) => i);
 
   return {
-    color: positionWithOffset.interpolate({
-      inputRange: inputRange,
-      outputRange: childrenA.map((_, i) =>
-        i === tabIndex ? activeColor : textColor
-      ),
-    }),
-    opacity: positionWithOffset.interpolate({
-      inputRange: inputRange,
-      outputRange: childrenA.map((_, i) => (i === tabIndex ? 1 : 0.6)),
-    }),
+    color:
+      childrenA.length <= 1
+        ? activeColor
+        : positionWithOffset.interpolate({
+            inputRange: inputRange,
+            outputRange: childrenA.map((_, i) =>
+              i === tabIndex ? activeColor : textColor
+            ),
+          }),
+    opacity:
+      childrenA.length <= 1
+        ? 1
+        : positionWithOffset.interpolate({
+            inputRange: inputRange,
+            outputRange: childrenA.map((_, i) => (i === tabIndex ? 1 : 0.6)),
+          }),
   };
 }
 
@@ -51,28 +57,37 @@ export function useIndicator({
     const childrenA = Array(childrenCount).fill(undefined);
     const inputRange = childrenA.map((__, i) => i);
     const positionWithOffset = Animated.add(position!, offset!);
+
+    const getTranslateX = (i: number) => {
+      const cl = layouts.current?.[i];
+      if (!cl) {
+        return 0;
+      }
+      return (cl.x + cl.width / 2) / cl.width;
+    };
+    const getScaleX = (i: number) => {
+      return layouts.current?.[i]?.width || 0;
+    };
     return position && tabsLayout && layouts.current
       ? {
           transform: [
             {
-              scaleX: positionWithOffset.interpolate({
-                inputRange,
-                outputRange: childrenA.map(
-                  (__, i) => layouts.current?.[i]?.width || 0
-                ),
-              }),
+              scaleX:
+                childrenA.length <= 1
+                  ? getScaleX(0)
+                  : positionWithOffset.interpolate({
+                      inputRange,
+                      outputRange: childrenA.map((__, i) => getScaleX(i)),
+                    }),
             },
             {
-              translateX: positionWithOffset.interpolate({
-                inputRange,
-                outputRange: childrenA.map((__, i) => {
-                  const cl = layouts.current?.[i];
-                  if (!cl) {
-                    return 0;
-                  }
-                  return (cl.x + cl.width / 2) / cl.width;
-                }),
-              }),
+              translateX:
+                childrenA.length <= 1
+                  ? getTranslateX(0)
+                  : positionWithOffset.interpolate({
+                      inputRange,
+                      outputRange: childrenA.map((__, i) => getTranslateX(i)),
+                    }),
             },
           ],
         }
