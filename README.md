@@ -63,6 +63,7 @@ import {
   Paragraph,
 } from 'react-native-paper';
 import {
+  TabsProvider,
   Tabs,
   TabScreen,
   useTabIndex,
