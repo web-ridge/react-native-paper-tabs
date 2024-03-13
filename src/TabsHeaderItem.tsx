@@ -71,8 +71,18 @@ export default function TabsHeaderItem({
 
   const badgeIsFilled =
     tab.props.badge !== undefined && tab.props.badge !== null;
-
   const badgeWithoutContent = typeof tab.props.badge === 'boolean';
+  const badgePropsIsFiiled = badgeIsFilled && 
+     tab.props.badgeProps !== undefined && tab.props.badgeProps !== null; // False if badge is not filled - badgeIsFilled==false
+  // check that badgeProps.visible is filled
+  const badgeVisibleIsFilled = badgePropsIsFiiled && tab.props.badgeProps?.visible !== undefined && tab.props.badgeProps?.visible !== null ;
+  const badgeVisible = badgeVisibleIsFilled ?  tab.props.badgeProps?.visible  : badgeIsFilled
+  const badgeRef = tab.props.badgeProps?.ref !== undefined  ? tab.props.badgeProps?.ref : undefined
+  const badgeSizeIsFiiled = badgePropsIsFiiled && (tab.props.badgeProps?.size !== undefined) && (tab.props.badgeProps?.size !== null) ; 
+  const badgeSize = badgeSizeIsFiiled ? tab.props.badgeProps?.size : badgeWithoutContent ? 8 : 16
+  const badgeTheme = tab.props.badgeProps?.theme
+  const badgeStyle = tab.props.badgeProps?.style 
+
 
   return (
     <View
@@ -136,14 +146,10 @@ export default function TabsHeaderItem({
                       : 0) - 2,
                 },
               ]}
-            >
-              {badgeWithoutContent ? (
-                <Badge visible={true} size={8} />
-              ) : (
-                <Badge visible={true} size={16}>
-                  {tab.props.badge as any}
-                </Badge>
-              )}
+            >              
+              <Badge visible={badgeVisible} theme={badgeTheme} ref={badgeRef as any} size={badgeSize} style={badgeStyle}  >
+                {tab.props.badge as any}
+              </Badge>
             </View>
           ) : null}
           {showTextLabel ? (

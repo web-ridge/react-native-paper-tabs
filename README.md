@@ -57,6 +57,8 @@ npm install react-native-paper-tabs react-native-pager-view
 ## Usage
 
 ```tsx
+import { useRef } from "react";
+import { StyleSheet } from "react-native"
 import {
   Button,
   Title,
@@ -71,6 +73,14 @@ import {
 } from 'react-native-paper-tabs';
 
 function Example() {
+    const badgeRef = useRef(null);
+    const myBadgeProps = {
+      style:styles.badge,
+      visible:false,
+      ref:badgeRef,
+      //theme:mytheme
+    }
+
     return (
       <TabsProvider
         defaultIndex={0}
@@ -100,6 +110,7 @@ function Example() {
             // badge={true} // only show indicator
             // badge="text"
             // badge={1}
+            // badgeProps={myBadgeProps}
             // onPressIn={() => {
             //   console.log('onPressIn explore');
             // }}
@@ -114,6 +125,15 @@ function Example() {
     )
 }
 
+
+const styles = StyleSheet.create({
+  badge: {
+    position: "absolute",
+    top: 4,
+    right: 0,
+    backgroundColor: "rgb(120, 69, 172)",
+  }
+});
 function ExploreWitHookExamples() {
   const goTo = useTabNavigation();
   const index = useTabIndex();
