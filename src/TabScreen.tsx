@@ -6,6 +6,7 @@ export interface TabScreenProps {
   label: string;
   icon?: IconSource;
   badge?: string | number | boolean;
+  badgeStyle?: React.CSSProperties;
   children: any;
   onPress?: (event: GestureResponderEvent) => void;
   onPressIn?: (event: GestureResponderEvent) => void;
