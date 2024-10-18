@@ -60,9 +60,11 @@ function SwiperNative(props: SwiperProps) {
     (e) => {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
-      goTo(i);
+      if (i !== index) {
+        goTo(i);
+      }
     },
-    [isScrolling, goTo]
+    [isScrolling, goTo, index]
   );
 
   const renderProps = {
