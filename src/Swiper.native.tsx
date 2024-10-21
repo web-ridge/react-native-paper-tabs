@@ -35,6 +35,7 @@ function SwiperNative(props: SwiperProps) {
   const position = React.useRef<Animated.Value>(new Animated.Value(index || 0));
   const isScrolling = React.useRef<boolean>(false);
   const viewPager = React.useRef<ViewPager | undefined>(undefined);
+  const isUserInteracting = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     if (index !== indexRef.current) {
@@ -52,19 +53,23 @@ function SwiperNative(props: SwiperProps) {
     (event) => {
       Keyboard.dismiss();
       isScrolling.current = event.nativeEvent.pageScrollState !== 'idle';
+      if (event.nativeEvent.pageScrollState === 'dragging') {
+        isUserInteracting.current = true;
+      }
     },
-    [isScrolling]
+    [isScrolling, isUserInteracting]
   );
 
   const onPageSelected = React.useCallback(
     (e) => {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
-      if (i !== index) {
+      if (i !== index && isUserInteracting.current) {
         goTo(i);
       }
+      isUserInteracting.current = false;
     },
-    [isScrolling, goTo, index]
+    [isScrolling, goTo, index, isUserInteracting]
   );
 
   const renderProps = {
