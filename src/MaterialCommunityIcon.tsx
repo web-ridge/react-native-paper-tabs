@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { StyleSheet, Animated } from 'react-native';
 
 let MaterialCommunityIcons: any;

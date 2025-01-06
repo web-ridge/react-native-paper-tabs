@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Animated, Keyboard, StyleSheet } from 'react-native';
+import { View, Animated, StyleSheet } from 'react-native';
 import ViewPager from 'react-native-pager-view';
 import type { SwiperProps } from './utils';
 import type { TabScreenProps } from './TabScreen';
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+const AnimatedPagerView = Animated.createAnimatedComponent(ViewPager);
 
 function SwiperNative(props: SwiperProps) {
   const {
@@ -39,9 +40,10 @@ function SwiperNative(props: SwiperProps) {
   React.useEffect(() => {
     if (index !== indexRef.current) {
       isScrolling.current = true;
-      requestAnimationFrame(
-        () => viewPager.current && viewPager.current.setPage(index)
-      );
+      // requestAnimationFrame(
+      //   () => viewPager.current && viewPager.current.setPage(index)
+      // );
+      viewPager.current && viewPager.current.setPage(index);
     }
 
     indexRef.current = index;
@@ -49,15 +51,15 @@ function SwiperNative(props: SwiperProps) {
   }, [isScrolling, viewPager, index]);
 
   const onPageScrollStateChanged = React.useCallback(
-    (event) => {
-      Keyboard.dismiss();
-      isScrolling.current = event.nativeEvent.pageScrollState !== 'idle';
+    (e: any) => {
+      // Keyboard.dismiss();
+      isScrolling.current = e.nativeEvent.pageScrollState !== 'idle';
     },
     [isScrolling]
   );
 
   const onPageSelected = React.useCallback(
-    (e) => {
+    (e: any) => {
       isScrolling.current = false;
       const i = e.nativeEvent.position;
       goTo(i);
@@ -83,7 +85,7 @@ function SwiperNative(props: SwiperProps) {
   return (
     <>
       <TabsHeader {...renderProps} />
-      <ViewPager
+      <AnimatedPagerView
         style={styles.viewPager}
         initialPage={index}
         scrollEnabled={!disableSwipe}
@@ -94,22 +96,22 @@ function SwiperNative(props: SwiperProps) {
           [
             {
               nativeEvent: {
-                position: position.current,
                 offset: offset.current,
+                position: position.current,
               },
             },
           ],
           {
-            useNativeDriver: false,
+            useNativeDriver: true,
           }
         )}
       >
         {React.Children.map(children.filter(Boolean), (tab, tabIndex) => (
           <View style={styles.viewPager} key={tab.props.label || tabIndex}>
-            {tab}
+            {tab as any}
           </View>
         ))}
-      </ViewPager>
+      </AnimatedPagerView>
     </>
   );
 }

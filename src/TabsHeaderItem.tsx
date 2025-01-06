@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Animated, StyleSheet, View, Platform } from 'react-native';
+import { Animated, StyleSheet, View, Platform, Text } from 'react-native';
 import type { LayoutChangeEvent, TextProps, TextStyle } from 'react-native';
-import { Badge, Text, TouchableRipple } from 'react-native-paper';
+import { Badge, TouchableRipple } from 'react-native-paper';
 import type { MD3LightTheme } from 'react-native-paper';
 import type { ReactElement } from 'react';
 import type { TabScreenProps } from './TabScreen';

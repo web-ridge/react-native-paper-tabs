@@ -49,8 +49,8 @@ export default function TabsHeader({
   const backgroundColor = customBackground
     ? customBackground
     : isV3
-    ? backgroundColorV3
-    : backgroundColorV2;
+      ? backgroundColorV3
+      : backgroundColorV2;
 
   let hasPrimaryBackground = colors.primary === backgroundColor;
   if (typeof dark === 'boolean') {
@@ -113,17 +113,19 @@ export default function TabsHeader({
   const updateScroll = React.useCallback(
     (scrollType?: 'next' | 'prev') => {
       if (!layouts.current || mode !== 'scrollable') {
+        console.log('returning no layout');
         return;
       }
       let cl = layouts.current[index];
 
       if (!cl || !scrollRef.current || !tabsLayout) {
+        console.log('!cl || !scrollRef.current || !tabsLayout');
         return;
       }
 
       const tabsWidth = tabsLayout.width;
       let scrolledX = scrollX.current;
-      // console.log({ scrolledX, scrollType });
+
       if (scrollType === 'next') {
         const next = layouts.current?.[index + 1];
         if (next) {

@@ -46,7 +46,7 @@ function Swiper(props: SwiperProps) {
   return (
     <View style={styles.root}>
       <TabsHeader {...renderProps} />
-      {currentScreen}
+      {currentScreen as any}
     </View>
   );
 }

@@ -7,6 +7,7 @@ import {
   Animated,
   StyleSheet,
   View,
+  Platform,
 } from 'react-native';
 import {
   RadioButton,
@@ -50,7 +51,7 @@ function App({
   const [iconPosition, setIconPosition] = React.useState<'leading' | 'top'>(
     'leading'
   );
-  const [mode, setMode] = React.useState<'fixed' | 'scrollable'>('fixed');
+  const [mode, setMode] = React.useState<'fixed' | 'scrollable'>('scrollable');
 
   const theme = useTheme();
   const bg =
@@ -71,223 +72,212 @@ function App({
     console.log('Tab Index:', index);
   }
 
-  return (
-    <SafeAreaView
-      style={[styles.full, { backgroundColor: theme.colors.background }]}
+  const settings = (
+    <Animated.View
+      style={[
+        styles.content,
+        styles.contentShadow,
+        {
+          backgroundColor: bg,
+        },
+      ]}
     >
-      <ScrollView style={styles.root}>
-        <View style={[styles.content, styles.padding]}>
-          <View style={styles.titleContainer}>
-            <Image source={require('./tab.png')} style={styles.logo} />
-            <Title>react-native-paper-tabs</Title>
-          </View>
+      <Row>
+        <Label>Dark mode</Label>
+        <Switch value={dark} onValueChange={onToggleDarkMode} />
+      </Row>
+      {dark ? null : (
+        <Row>
+          <Label>Background color</Label>
+          <Block
+            backgroundColor={theme.colors.primary}
+            onPress={() => setBackgroundColor(undefined)}
+            selected={backgroundColor === undefined}
+          />
 
-          <Paragraph>
-            Smooth and fast cross platform Material Design Tabs for React Native
-            Paper brought to you by{' '}
-            <Text
-              onPress={() => Linking.openURL('https://webridge.nl')}
-              style={styles.underline}
-            >
-              webRidge
-            </Text>
-          </Paragraph>
-          <Enter />
-          <Enter />
-          <Button
-            uppercase={false}
-            mode="contained"
-            icon="github"
-            style={styles.twitterButton}
-            onPress={() =>
-              Linking.openURL(
-                'https://github.com/web-ridge/react-native-paper-tabs'
-              )
-            }
-          >
-            GitHub
-          </Button>
-          <TwitterFollowButton userName={'RichardLindhout'} />
-          <TwitterFollowButton userName={'web_ridge'} />
-        </View>
-        <View style={[styles.content, styles.padding]}>
-          <Title>Example</Title>
-        </View>
-        <Animated.View
-          style={[
-            styles.content,
-            styles.contentShadow,
-            styles.contentInline,
-            { backgroundColor: bg },
-          ]}
+          <Block
+            backgroundColor={'#fff'}
+            onPress={() => setBackgroundColor('#fff')}
+            selected={backgroundColor === '#fff'}
+          />
+        </Row>
+      )}
+      <Row>
+        <Label>Uppercase</Label>
+        <Switch value={uppercase} onValueChange={(v) => setUppercase(v)} />
+      </Row>
+      <Row>
+        <Label>Show icons</Label>
+        <Switch value={showIcons} onValueChange={(v) => setShowIcons(v)} />
+      </Row>
+      <Row>
+        <Label>Show text</Label>
+        <Switch value={showText} onValueChange={(v) => setShowText(v)} />
+      </Row>
+      <Row>
+        <Label>Show badge</Label>
+        <Switch value={showBadges} onValueChange={(v) => setShowBadges(v)} />
+      </Row>
+      <Row>
+        <Label>Show flights tabs</Label>
+        <Switch
+          value={showFlightTab}
+          onValueChange={(v) => setShowFlightTab(v)}
+        />
+      </Row>
+      <Row>
+        <Title>Icon position</Title>
+      </Row>
+      <RadioButton.Group
+        onValueChange={(v) => setIconPosition(v as any)}
+        value={iconPosition}
+      >
+        <RadioButton.Item label="Leading" value="leading" />
+        <RadioButton.Item label="Top" value="top" />
+      </RadioButton.Group>
+      <Row>
+        <Title>Tab mode</Title>
+      </Row>
+      <RadioButton.Group onValueChange={(v) => setMode(v as any)} value={mode}>
+        <RadioButton.Item label="Fixed" value="fixed" />
+        <RadioButton.Item label="Scrollable" value="scrollable" />
+      </RadioButton.Group>
+      <Enter />
+      <Enter />
+
+      <Enter />
+    </Animated.View>
+  );
+  const tabs =
+    mode === 'fixed' ? (
+      <Tabs {...tabProps}>
+        <TabScreen
+          label="Explore"
+          icon={showIcons ? 'compass' : undefined}
+          badge={showBadges ? '33' : undefined}
+          onPressIn={() => {
+            console.log('onPressIn explore');
+          }}
+          onPress={() => {
+            console.log('onPress explore');
+          }}
         >
-          <Appbar style={tabProps.style}>
-            <Appbar.Action icon="menu" />
-            <Appbar.Content title="react-native-paper-tabs" />
-          </Appbar>
-          <TabsProvider defaultIndex={0} onChangeIndex={handleChangeIndex}>
-            {mode === 'fixed' ? (
-              <Tabs {...tabProps}>
-                <TabScreen
-                  label="Explore"
-                  icon={showIcons ? 'compass' : undefined}
-                  badge={showBadges ? '33' : undefined}
-                  onPressIn={() => {
-                    console.log('onPressIn explore');
-                  }}
-                  onPress={() => {
-                    console.log('onPress explore');
-                  }}
-                >
-                  <ExploreWitHookExamples />
-                </TabScreen>
-                {showFlightTab && (
-                  <TabScreen
-                    label="Flights"
-                    icon={showIcons ? 'airplane' : undefined}
-                  >
-                    <ScreenWithText text={'Flights'} />
-                  </TabScreen>
-                )}
-                <TabScreen
-                  label="Trips"
-                  icon={showIcons ? 'bag-personal' : undefined}
-                >
-                  <ScreenWithText text={'Trips'} />
-                </TabScreen>
-              </Tabs>
-            ) : (
-              <Tabs {...tabProps}>
-                <TabScreen
-                  label="Explore"
-                  icon={showIcons ? 'compass' : undefined}
-                >
-                  <ExploreWitHookExamples />
-                </TabScreen>
-                <TabScreen
-                  label="Flights"
-                  icon={showIcons ? 'airplane' : undefined}
-                >
-                  <ScreenWithText text={'Flights'} />
-                </TabScreen>
-                <TabScreen
-                  label="Trips"
-                  icon={showIcons ? 'bag-personal' : undefined}
-                >
-                  <ScreenWithText text={'Trips'} />
-                </TabScreen>
-                <TabScreen
-                  label="Bookings"
-                  icon={showIcons ? 'book' : undefined}
-                >
-                  <ScreenWithText text={'Bookings'} />
-                </TabScreen>
-                <TabScreen
-                  label="Personal"
-                  icon={showIcons ? 'shield-account' : undefined}
-                >
-                  <ScreenWithText text={'Personal'} />
-                </TabScreen>
-                <TabScreen
-                  label="Settings"
-                  icon={showIcons ? 'cog' : undefined}
-                >
-                  <ScreenWithText text={'Settings'} />
-                </TabScreen>
-              </Tabs>
-            )}
+          <ScrollView>
+            <ExploreWitHookExamples />
+            {settings}
+          </ScrollView>
+        </TabScreen>
+        {showFlightTab && (
+          <TabScreen label="Flights" icon={showIcons ? 'airplane' : undefined}>
+            <ScreenWithText text={'Flights'} />
+          </TabScreen>
+        )}
+        <TabScreen label="Trips" icon={showIcons ? 'bag-personal' : undefined}>
+          <ScreenWithText text={'Trips'} />
+        </TabScreen>
+      </Tabs>
+    ) : (
+      <Tabs {...tabProps}>
+        <TabScreen label="Explore" icon={showIcons ? 'compass' : undefined}>
+          <ExploreWitHookExamples />
+        </TabScreen>
+        <TabScreen label="Flights" icon={showIcons ? 'airplane' : undefined}>
+          <ScreenWithText text={'Flights'} />
+        </TabScreen>
+        <TabScreen label="Trips" icon={showIcons ? 'bag-personal' : undefined}>
+          <ScreenWithText text={'Trips'} />
+        </TabScreen>
+        <TabScreen label="Bookings" icon={showIcons ? 'book' : undefined}>
+          <ScreenWithText text={'Bookings'} />
+        </TabScreen>
+        <TabScreen
+          label="Personal"
+          icon={showIcons ? 'shield-account' : undefined}
+        >
+          <ScreenWithText text={'Personal'} />
+        </TabScreen>
+        <TabScreen label="Settings" icon={showIcons ? 'cog' : undefined}>
+          <ScreenWithText text={'Settings'} />
+        </TabScreen>
+      </Tabs>
+    );
 
+  if (Platform.OS === 'android') {
+    return (
+      <TabsProvider defaultIndex={0} onChangeIndex={handleChangeIndex}>
+        {tabs}
+      </TabsProvider>
+    );
+  }
+
+  return (
+    <TabsProvider defaultIndex={0} onChangeIndex={handleChangeIndex}>
+      <SafeAreaView
+        style={[styles.full, { backgroundColor: theme.colors.background }]}
+      >
+        <ScrollView style={styles.root}>
+          <View style={[styles.content, styles.padding]}>
+            <View style={styles.titleContainer}>
+              <Image source={require('./tab.png')} style={styles.logo} />
+              <Title>react-native-paper-tabs</Title>
+            </View>
+
+            <Paragraph>
+              Smooth and fast cross platform Material Design Tabs for React
+              Native Paper brought to you by{' '}
+              <Text
+                onPress={() => Linking.openURL('https://webridge.nl')}
+                style={styles.underline}
+              >
+                webRidge
+              </Text>
+            </Paragraph>
+            <Enter />
+            <Enter />
+            <Button
+              uppercase={false}
+              mode="contained"
+              icon="github"
+              style={styles.twitterButton}
+              onPress={() =>
+                Linking.openURL(
+                  'https://github.com/web-ridge/react-native-paper-tabs'
+                )
+              }
+            >
+              GitHub
+            </Button>
+            <TwitterFollowButton userName={'RichardLindhout'} />
+            <TwitterFollowButton userName={'web_ridge'} />
+          </View>
+          <View style={[styles.content, styles.padding]}>
+            <Title>Example</Title>
+          </View>
+          <Animated.View
+            style={[
+              styles.content,
+              styles.contentShadow,
+              styles.contentInline,
+              { backgroundColor: bg },
+            ]}
+          >
+            <Appbar style={tabProps.style}>
+              <Appbar.Action icon="menu" />
+              <Appbar.Content title="react-native-paper-tabs" />
+            </Appbar>
+            {tabs}
             <Enter />
             <Divider />
             <ExampleGoToFromProvider />
-          </TabsProvider>
-        </Animated.View>
-        <Animated.View
-          style={[
-            styles.content,
-            styles.contentShadow,
-            {
-              backgroundColor: bg,
-            },
-          ]}
-        >
-          <Row>
-            <Label>Dark mode</Label>
-            <Switch value={dark} onValueChange={onToggleDarkMode} />
-          </Row>
-          {dark ? null : (
-            <Row>
-              <Label>Background color</Label>
-              <Block
-                backgroundColor={theme.colors.primary}
-                onPress={() => setBackgroundColor(undefined)}
-                selected={backgroundColor === undefined}
-              />
-
-              <Block
-                backgroundColor={'#fff'}
-                onPress={() => setBackgroundColor('#fff')}
-                selected={backgroundColor === '#fff'}
-              />
-            </Row>
-          )}
-          <Row>
-            <Label>Uppercase</Label>
-            <Switch value={uppercase} onValueChange={(v) => setUppercase(v)} />
-          </Row>
-          <Row>
-            <Label>Show icons</Label>
-            <Switch value={showIcons} onValueChange={(v) => setShowIcons(v)} />
-          </Row>
-          <Row>
-            <Label>Show text</Label>
-            <Switch value={showText} onValueChange={(v) => setShowText(v)} />
-          </Row>
-          <Row>
-            <Label>Show badge</Label>
-            <Switch
-              value={showBadges}
-              onValueChange={(v) => setShowBadges(v)}
-            />
-          </Row>
-          <Row>
-            <Label>Show flights tabs</Label>
-            <Switch
-              value={showFlightTab}
-              onValueChange={(v) => setShowFlightTab(v)}
-            />
-          </Row>
-          <Row>
-            <Title>Icon position</Title>
-          </Row>
-          <RadioButton.Group
-            onValueChange={(v) => setIconPosition(v as any)}
-            value={iconPosition}
-          >
-            <RadioButton.Item label="Leading" value="leading" />
-            <RadioButton.Item label="Top" value="top" />
-          </RadioButton.Group>
-          <Row>
-            <Title>Tab mode</Title>
-          </Row>
-          <RadioButton.Group
-            onValueChange={(v) => setMode(v as any)}
-            value={mode}
-          >
-            <RadioButton.Item label="Fixed" value="fixed" />
-            <RadioButton.Item label="Scrollable" value="scrollable" />
-          </RadioButton.Group>
-          <Enter />
-          <Enter />
+          </Animated.View>
+          {settings}
 
           <Enter />
-        </Animated.View>
-
-        <Enter />
-        <Enter />
-        <Enter />
-      </ScrollView>
-    </SafeAreaView>
+          <Enter />
+          <Enter />
+        </ScrollView>
+      </SafeAreaView>
+    </TabsProvider>
   );
 }
 

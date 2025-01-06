@@ -68,6 +68,7 @@ export function useIndicator({
     const getScaleX = (i: number) => {
       return layouts.current?.[i]?.width || 0;
     };
+
     return position && tabsLayout && layouts.current
       ? {
           transform: [
@@ -78,6 +79,7 @@ export function useIndicator({
                   : positionWithOffset.interpolate({
                       inputRange,
                       outputRange: childrenA.map((__, i) => getScaleX(i)),
+                      // extrapolate: 'clamp',
                     }),
             },
             {
@@ -87,6 +89,7 @@ export function useIndicator({
                   : positionWithOffset.interpolate({
                       inputRange,
                       outputRange: childrenA.map((__, i) => getTranslateX(i)),
+                      // extrapolate: 'clamp',
                     }),
             },
           ],
@@ -111,7 +114,12 @@ export function useOffsetScroller({
   const direction = React.useRef<undefined | 'next' | 'prev'>(undefined);
   React.useEffect(() => {
     // android does not work unfortunately
-    if (offset && Platform.OS !== 'android' && mode === 'scrollable') {
+    if (
+      offset !== undefined &&
+      offset !== null &&
+      Platform.OS !== 'android' &&
+      mode === 'scrollable'
+    ) {
       const id = offset.addListener((nOffset) => {
         const newOffset = nOffset.value;
         const oldDirection = direction.current;
