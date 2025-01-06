@@ -86,6 +86,8 @@ function Example() {
           // mode="scrollable" // fixed, scrollable | default=fixed
           // showLeadingSpace={true} //  (default=true) show leading space in scrollable tabs inside the header
           // disableSwipe={false} // (default=false) disable swipe to left/right gestures
+          // tabHeaderStyle // style object, can be animated properties as well in
+          // tabLabelStyle // style object
         >
           <TabScreen label="Explore" icon="compass">
              <ExploreWitHookExamples />
