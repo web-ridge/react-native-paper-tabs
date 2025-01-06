@@ -229,7 +229,7 @@ function App({
                 onPress={() => Linking.openURL('https://webridge.nl')}
                 style={styles.underline}
               >
-                webRidge
+                webRidge.
               </Text>
             </Paragraph>
             <Enter />
