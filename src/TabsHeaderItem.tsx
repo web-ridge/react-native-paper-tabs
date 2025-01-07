@@ -115,7 +115,6 @@ export default function TabsHeaderItem({
                 iconPosition !== 'top' && styles.marginRight,
               ]}
             >
-              {/*<AnimatedText style={{ color, opacity }}>BB</AnimatedText>*/}
               {tab.props.icon ? (
                 Platform.OS === 'android' ? (
                   <Animated.View style={{ opacity }}>
