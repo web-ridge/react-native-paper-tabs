@@ -1,4 +1,4 @@
-import { StyleSheet, Animated } from 'react-native';
+import { Animated } from 'react-native';
 
 let MaterialCommunityIcons: any;
 
@@ -39,27 +39,4 @@ try {
   };
 }
 
-const defaultIcon = ({ name, color, size, style, ...rest }: any) => (
-  <MaterialCommunityIcons
-    selectable={false}
-    name={name}
-    color={color}
-    size={size}
-    style={[
-      {
-        lineHeight: size,
-      },
-      styles.icon,
-      style,
-    ]}
-    {...rest}
-  />
-);
-
-const styles = StyleSheet.create({
-  icon: {
-    backgroundColor: 'transparent',
-  },
-});
-
-export default defaultIcon;
+export default MaterialCommunityIcons;

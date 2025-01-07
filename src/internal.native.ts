@@ -25,7 +25,7 @@ export function useAnimatedText({
     color:
       childrenA.length <= 1
         ? activeColor
-        : positionWithOffset.interpolate({
+        : positionWithOffset!.interpolate({
             inputRange: inputRange,
             outputRange: childrenA.map((_, i) =>
               i === tabIndex ? activeColor : textColor

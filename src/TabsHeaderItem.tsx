@@ -115,14 +115,30 @@ export default function TabsHeaderItem({
                 iconPosition !== 'top' && styles.marginRight,
               ]}
             >
-              <MaterialCommunityIcon
-                selectable={false}
-                accessibilityElementsHidden={true}
-                importantForAccessibility="no"
-                name={tab.props.icon || ''}
-                style={{ color: color, opacity }}
-                size={24}
-              />
+              {/*<AnimatedText style={{ color, opacity }}>BB</AnimatedText>*/}
+              {tab.props.icon ? (
+                Platform.OS === 'android' ? (
+                  <Animated.View style={{ opacity }}>
+                    <MaterialCommunityIcon
+                      selectable={false}
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no"
+                      name={tab.props.icon}
+                      color={textColor}
+                      size={24}
+                    />
+                  </Animated.View>
+                ) : (
+                  <MaterialCommunityIcon
+                    selectable={false}
+                    accessibilityElementsHidden={true}
+                    importantForAccessibility="no"
+                    name={tab.props.icon}
+                    style={{ color, opacity }}
+                    size={24}
+                  />
+                )
+              ) : null}
             </View>
           ) : null}
           {badgeIsFilled ? (

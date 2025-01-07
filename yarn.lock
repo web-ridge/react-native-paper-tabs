@@ -2272,7 +2272,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/vector-icons@npm:^14.0.0":
+"@expo/vector-icons@npm:^14.0.0, @expo/vector-icons@npm:^14.0.4":
   version: 14.0.4
   resolution: "@expo/vector-icons@npm:14.0.4"
   dependencies:
@@ -11914,7 +11914,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.0
     "@expo/metro-runtime": ~4.0.0
-    "@expo/vector-icons": ^13.0.0
+    "@expo/vector-icons": ^14.0.4
     expo: ~52.0.23
     expo-build-properties: ~0.13.1
     expo-status-bar: ~2.0.0
