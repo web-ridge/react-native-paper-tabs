@@ -112,7 +112,7 @@ export default function TabsHeader({
 
   const updateScroll = React.useCallback(
     (scrollType?: 'next' | 'prev') => {
-      if (!layouts.current || mode !== 'scrollable') {
+      if (!layouts.current) {
         console.log('returning no layout');
         return;
       }
@@ -155,7 +155,7 @@ export default function TabsHeader({
         });
       }
     },
-    [mode, layouts, index, scrollRef, scrollX, tabsLayout]
+    [layouts, index, scrollRef, scrollX, tabsLayout]
   );
 
   // subscribes to offset on native devices to scroll tab bar faster when scrolling (iOS only since Android bugs)
