@@ -153,9 +153,9 @@ export default function TabsHeaderItem({
               ]}
             >
               {badgeWithoutContent ? (
-                <Badge visible={true} size={8} />
+                <Badge visible={true} size={8} theme={theme} />
               ) : (
-                <Badge visible={true} size={16}>
+                <Badge visible={true} size={16} theme={theme}>
                   {tab.props.badge as any}
                 </Badge>
               )}
