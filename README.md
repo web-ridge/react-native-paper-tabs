@@ -36,11 +36,6 @@ Give us a follow on Twitter:
 [RichardLindhout](https://twitter.com/RichardLindhout),
 [web_ridge](https://twitter.com/web_ridge)
 
-## Donate
-Please contribute or donate so we can spend more time on this library.
-
-[Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7B9KKQLXTEW9Q&source=url)
-
 
 ## Getting started
 
