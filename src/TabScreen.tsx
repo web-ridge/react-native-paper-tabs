@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { GestureResponderEvent } from 'react-native';
+import type TabsHeaderItem from './TabsHeaderItem';
 
 export interface TabScreenProps {
   label: string;
@@ -9,6 +10,7 @@ export interface TabScreenProps {
   onPress?: (event: GestureResponderEvent) => void;
   onPressIn?: (event: GestureResponderEvent) => void;
   disabled?: boolean;
+  TabHeaderItem?: typeof TabsHeaderItem | undefined;
 }
 
 export default function TabScreen({ children }: TabScreenProps) {

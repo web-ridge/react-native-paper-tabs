@@ -74,6 +74,97 @@ export default function TabsHeaderItem({
 
   const badgeWithoutContent = typeof tab.props.badge === 'boolean';
 
+  const HeaderItem = tab.props.TabHeaderItem ? (
+    <tab.props.TabHeaderItem
+      theme={theme}
+      tabIndex={tabIndex}
+      tab={tab as ReactElement<TabScreenProps>}
+      active={active}
+      onTabLayout={onTabLayout}
+      goTo={goTo}
+      activeColor={activeColor}
+      textColor={textColor}
+      position={position}
+      offset={offset}
+      childrenCount={childrenCount}
+      uppercase={uppercase}
+      iconPosition={iconPosition}
+      showTextLabel={showTextLabel}
+      mode={mode}
+      tabLabelStyle={tabLabelStyle}
+    />
+  ) : (
+    <>
+      {tab.props.icon ? (
+        <View
+          style={[
+            styles.iconContainer,
+            iconPosition !== 'top' && styles.marginRight,
+          ]}
+        >
+          {tab.props.icon ? (
+            Platform.OS === 'android' ? (
+              <Animated.View style={{ opacity }}>
+                <MaterialCommunityIcon
+                  selectable={false}
+                  accessibilityElementsHidden={true}
+                  importantForAccessibility="no"
+                  name={tab.props.icon}
+                  color={textColor}
+                  size={24}
+                />
+              </Animated.View>
+            ) : (
+              <MaterialCommunityIcon
+                selectable={false}
+                accessibilityElementsHidden={true}
+                importantForAccessibility="no"
+                name={tab.props.icon}
+                style={{ color, opacity }}
+                size={24}
+              />
+            )
+          ) : null}
+        </View>
+      ) : null}
+      {badgeIsFilled ? (
+        <View
+          style={[
+            styles.badgeContainer,
+            {
+              right:
+                (badgeWithoutContent
+                  ? String(tab.props.badge).length * -2
+                  : 0) - 2,
+            },
+          ]}
+        >
+          {badgeWithoutContent ? (
+            <Badge visible={true} size={8} theme={theme} />
+          ) : (
+            <Badge visible={true} size={16} theme={theme}>
+              {tab.props.badge as any}
+            </Badge>
+          )}
+        </View>
+      ) : null}
+      {showTextLabel ? (
+        <AnimatedText
+          selectable={false}
+          style={[
+            styles.text,
+            iconPosition === 'top' && styles.textTop,
+            { ...theme.fonts.titleSmall, color, opacity },
+            tabLabelStyle,
+          ]}
+        >
+          {uppercase && !theme.isV3
+            ? tab.props.label.toUpperCase()
+            : tab.props.label}
+        </AnimatedText>
+      ) : null}
+    </>
+  );
   return (
     <View
       key={tab.props.label}
@@ -108,74 +199,7 @@ export default function TabsHeaderItem({
             iconPosition === 'top' && styles.touchableRippleInnerTop,
           ]}
         >
-          {tab.props.icon ? (
-            <View
-              style={[
-                styles.iconContainer,
-                iconPosition !== 'top' && styles.marginRight,
-              ]}
-            >
-              {tab.props.icon ? (
-                Platform.OS === 'android' ? (
-                  <Animated.View style={{ opacity }}>
-                    <MaterialCommunityIcon
-                      selectable={false}
-                      accessibilityElementsHidden={true}
-                      importantForAccessibility="no"
-                      name={tab.props.icon}
-                      color={textColor}
-                      size={24}
-                    />
-                  </Animated.View>
-                ) : (
-                  <MaterialCommunityIcon
-                    selectable={false}
-                    accessibilityElementsHidden={true}
-                    importantForAccessibility="no"
-                    name={tab.props.icon}
-                    style={{ color, opacity }}
-                    size={24}
-                  />
-                )
-              ) : null}
-            </View>
-          ) : null}
-          {badgeIsFilled ? (
-            <View
-              style={[
-                styles.badgeContainer,
-                {
-                  right:
-                    (badgeWithoutContent
-                      ? String(tab.props.badge).length * -2
-                      : 0) - 2,
-                },
-              ]}
-            >
-              {badgeWithoutContent ? (
-                <Badge visible={true} size={8} theme={theme} />
-              ) : (
-                <Badge visible={true} size={16} theme={theme}>
-                  {tab.props.badge as any}
-                </Badge>
-              )}
-            </View>
-          ) : null}
-          {showTextLabel ? (
-            <AnimatedText
-              selectable={false}
-              style={[
-                styles.text,
-                iconPosition === 'top' && styles.textTop,
-                { ...theme.fonts.titleSmall, color, opacity },
-                tabLabelStyle,
-              ]}
-            >
-              {uppercase && !theme.isV3
-                ? tab.props.label.toUpperCase()
-                : tab.props.label}
-            </AnimatedText>
-          ) : null}
+          {HeaderItem}
         </View>
       </TouchableRipple>
     </View>
