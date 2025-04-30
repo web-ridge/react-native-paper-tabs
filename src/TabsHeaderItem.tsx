@@ -212,10 +212,15 @@ const styles = StyleSheet.create({
     left: 0,
     top: -2,
   },
-  tabRoot: { position: 'relative' },
+  tabRoot: {
+    position: 'relative',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+  },
   tabRootFixed: { flex: 1 },
   touchableRipple: {
-    height: 48,
+    minHeight: 48,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',

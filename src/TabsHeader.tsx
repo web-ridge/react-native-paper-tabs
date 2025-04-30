@@ -174,7 +174,6 @@ export default function TabsHeader({
         style={[
           { backgroundColor, elevation },
           restStyle,
-          styles.tabs,
           iconPosition === 'top' && styles.tabsTopIcon,
         ]}
         onLayout={onTabsLayout}
@@ -259,9 +258,6 @@ const styles = StyleSheet.create({
   },
   scrollablePadding: {
     width: 52,
-  },
-  tabs: {
-    height: 48,
   },
   tabsTopIcon: {
     height: 72,
