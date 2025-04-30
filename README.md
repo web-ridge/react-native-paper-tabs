@@ -88,6 +88,7 @@ function Example() {
           // disableSwipe={false} // (default=false) disable swipe to left/right gestures
           // tabHeaderStyle // style object, can be animated properties as well in
           // tabLabelStyle // style object
+          // TabHeaderComponent={MyCustomHeader} // render a custom header
         >
           <TabScreen label="Explore" icon="compass">
              <ExploreWitHookExamples />
@@ -108,6 +109,7 @@ function Example() {
             // onPress={() => {
             //   console.log('onPress explore');
             // }}
+            // TabHeaderComponent={MyCustomHeader} // render a custom header
           >
              <View style={{ backgroundColor: 'red', flex:1 }} />
           </TabScreen>
