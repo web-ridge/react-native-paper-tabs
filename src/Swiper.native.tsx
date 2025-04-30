@@ -26,6 +26,7 @@ function SwiperNative(props: SwiperProps) {
     disableSwipe,
     tabHeaderStyle,
     tabLabelStyle,
+    TabHeaderComponent,
   } = props;
   const { index, goTo } = React.useContext(TabsContext);
   const indexRef = React.useRef<number>(index || 0);
@@ -81,6 +82,7 @@ function SwiperNative(props: SwiperProps) {
     mode,
     tabHeaderStyle,
     tabLabelStyle,
+    TabHeaderComponent,
   };
   return (
     <>

@@ -10,7 +10,7 @@ export interface TabScreenProps {
   onPress?: (event: GestureResponderEvent) => void;
   onPressIn?: (event: GestureResponderEvent) => void;
   disabled?: boolean;
-  Header?: typeof TabsHeaderItem | undefined;
+  TabHeaderComponent?: typeof TabsHeaderItem | undefined;
 }
 
 export default function TabScreen({ children }: TabScreenProps) {

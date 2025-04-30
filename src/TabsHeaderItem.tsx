@@ -31,6 +31,7 @@ export default function TabsHeaderItem({
   iconPosition,
   showTextLabel,
   tabLabelStyle,
+  TabHeaderComponent,
 }: {
   tab: ReactElement<TabScreenProps>;
   tabIndex: number;
@@ -48,6 +49,7 @@ export default function TabsHeaderItem({
   showTextLabel?: boolean;
   mode: Mode;
   tabLabelStyle?: TextStyle | undefined;
+  TabHeaderComponent?: typeof TabsHeaderItem;
 }) {
   const baseColor = theme.colors.primary;
   const rippleColor = React.useMemo(
@@ -74,8 +76,10 @@ export default function TabsHeaderItem({
 
   const badgeWithoutContent = typeof tab.props.badge === 'boolean';
 
-  const HeaderItem = tab.props.Header ? (
-    <tab.props.Header
+  const CustomHeader = tab.props.TabHeaderComponent || TabHeaderComponent;
+
+  const HeaderItem = CustomHeader ? (
+    <CustomHeader
       theme={theme}
       tabIndex={tabIndex}
       tab={tab as ReactElement<TabScreenProps>}
