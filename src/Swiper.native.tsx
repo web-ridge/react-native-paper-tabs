@@ -61,6 +61,7 @@ function SwiperNative(props: SwiperProps) {
 
   const onPageSelected = React.useCallback(
     (e: any) => {
+      if (isScrolling.current) return;
       isScrolling.current = false;
       const i = e.nativeEvent.position;
       goTo(i);
