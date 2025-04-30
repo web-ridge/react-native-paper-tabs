@@ -5,6 +5,7 @@ import Swiper from './Swiper';
 import type { MD3LightTheme } from 'react-native-paper';
 
 import type { IconPosition, Mode } from './utils';
+import type TabsHeaderItem from './TabsHeaderItem';
 
 function Tabs({
   theme,
@@ -18,6 +19,7 @@ function Tabs({
   disableSwipe = false,
   tabHeaderStyle,
   tabLabelStyle,
+  TabHeaderComponent,
   ...rest
 }: {
   children: any;
@@ -32,6 +34,7 @@ function Tabs({
   disableSwipe?: boolean;
   tabHeaderStyle?: ViewStyle | undefined;
   tabLabelStyle?: TextStyle | undefined;
+  TabHeaderComponent?: typeof TabsHeaderItem;
 }) {
   const children = React.Children.toArray(rest.children).filter(Boolean);
 
@@ -48,6 +51,7 @@ function Tabs({
       disableSwipe={disableSwipe}
       tabHeaderStyle={tabHeaderStyle}
       tabLabelStyle={tabLabelStyle}
+      TabHeaderComponent={TabHeaderComponent}
     >
       {children}
     </Swiper>

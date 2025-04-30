@@ -27,6 +27,7 @@ export default function TabsHeader({
   mode,
   tabHeaderStyle,
   tabLabelStyle,
+  TabHeaderComponent,
   children,
 }: SwiperRenderProps) {
   const { index, goTo } = React.useContext(TabsContext);
@@ -174,7 +175,6 @@ export default function TabsHeader({
         style={[
           { backgroundColor, elevation },
           restStyle,
-          styles.tabs,
           iconPosition === 'top' && styles.tabsTopIcon,
         ]}
         onLayout={onTabsLayout}
@@ -218,6 +218,7 @@ export default function TabsHeader({
               showTextLabel={showTextLabel}
               mode={mode}
               tabLabelStyle={tabLabelStyle}
+              TabHeaderComponent={TabHeaderComponent}
             />
           ))}
           <Animated.View
@@ -259,9 +260,6 @@ const styles = StyleSheet.create({
   },
   scrollablePadding: {
     width: 52,
-  },
-  tabs: {
-    height: 48,
   },
   tabsTopIcon: {
     height: 72,

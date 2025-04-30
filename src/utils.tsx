@@ -8,6 +8,7 @@ import type {
 } from 'react-native';
 import type { MD3LightTheme } from 'react-native-paper';
 import type { MutableRefObject, RefObject } from 'react';
+import type TabsHeaderItem from './TabsHeaderItem';
 export type AnimatedViewStyle = Animated.AnimatedProps<StyleProp<ViewStyle>>;
 export type AnimatedTextStyle = Animated.AnimatedProps<StyleProp<TextStyle>>;
 export type Mode = 'fixed' | 'scrollable';
@@ -27,6 +28,7 @@ export interface SwiperRenderProps {
   mode: Mode;
   tabHeaderStyle: ViewStyle | undefined;
   tabLabelStyle: TextStyle | undefined;
+  TabHeaderComponent?: typeof TabsHeaderItem;
 }
 
 export interface SwiperProps {
@@ -42,6 +44,7 @@ export interface SwiperProps {
   disableSwipe?: boolean;
   tabHeaderStyle: ViewStyle | undefined;
   tabLabelStyle: TextStyle | undefined;
+  TabHeaderComponent?: typeof TabsHeaderItem;
 }
 
 export interface OffsetScrollArgs {
