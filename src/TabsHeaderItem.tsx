@@ -74,8 +74,8 @@ export default function TabsHeaderItem({
 
   const badgeWithoutContent = typeof tab.props.badge === 'boolean';
 
-  const HeaderItem = tab.props.TabHeaderItem ? (
-    <tab.props.TabHeaderItem
+  const HeaderItem = tab.props.Header ? (
+    <tab.props.Header
       theme={theme}
       tabIndex={tabIndex}
       tab={tab as ReactElement<TabScreenProps>}
